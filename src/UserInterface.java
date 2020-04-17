@@ -1,7 +1,23 @@
-/** 
+/**
  * 
- * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
- * */
+ * @author Brahma Dathan and Sarnath Ramnath
+ * @Copyright (c) 2010
+ 
+ * Redistribution and use with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   - the use is for academic purpose only
+ *   - Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *   - Neither the name of Brahma Dathan or Sarnath Ramnath
+ *     may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * The authors do not make any claims regarding the correctness of the code in this module
+ * and are not responsible for any loss or damage resulting from its use.  
+ */
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,6 +33,9 @@ import java.util.StringTokenizer;
  * This class implements the user interface for the Company project. The
  * commands are encoded as integers using a number of static final variables. A
  * number of utility methods exist to make it easier to parse the input.
+ * 
+ * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
+ * 
  * */
 public class UserInterface {
 	private static UserInterface userInterface;
@@ -185,6 +204,24 @@ public class UserInterface {
 		System.out.println(RETRIEVE + " to  retrieve");
 		System.out.println(PRINT_FORMATTED + " to  print items formatted");
 		System.out.println(HELP + " for help");
+	}
+	
+	/**
+	 * Method to be called for adding a customer. Prompts the user for the
+	 * appropriate values and uses the appropriate Company method for adding the
+	 * customer.
+	 * 
+	 */
+	public void addCustomer() {
+		String name = getToken("Enter member name");
+		String address = getToken("Enter address");
+		String phone = getToken("Enter phone");
+		Customer result;
+		result = company.addCustomer(name, address, phone);
+		if (result == null) {
+			System.out.println("Could not add member");
+		}
+		System.out.println(result);
 	}
 	
 	public static void main(int[] args) {
