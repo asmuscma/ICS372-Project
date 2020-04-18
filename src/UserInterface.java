@@ -358,7 +358,7 @@ public class UserInterface {
 		Customer result;
 		do {
 			String repairPlanId = getToken("Please enter the repairPlanId");
-			result = company.processRepairPlan(applianceId);
+			result = company.processRepairPlan(applianceId);// Did you mean repairPlanId
 			if (result != null) {
 				System.out.println(result);
 			} else {

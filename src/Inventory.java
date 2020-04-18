@@ -52,7 +52,7 @@ public class Inventory extends ItemList<Appliance, String> {
 	 * 
 	 * @param applianceId
 	 *            book id
-	 * @return true iff book could be removed
+	 * @return true if book could be removed
 	 */
 	public boolean removeAppliance(String applianceId) {
 		Appliance appliance = search(applianceId);

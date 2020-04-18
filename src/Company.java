@@ -19,6 +19,11 @@
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -69,6 +74,14 @@ public class Company implements Serializable {
 			return company;
 		}
 	}
+	
+	public Customer addCustomer(String name, String address, String phone) {
+		Customer member = new Customer(name, address, phone);
+		if (customerList.insertCustomer(member)) {
+			return (member);
+		}
+		return null;
+	}
 
 	public Appliance addAppliance(String manufacturer, String model, double price) {
 			Appliance item = instance().createLoanableItem(
@@ -78,27 +91,108 @@ public class Company implements Serializable {
 			}
 			return null;
 	}
-
+	
+	
+	
+	public Inventory searchInventory(String applianceId) {
+		if (inventory == null) {
+			return (inventory = new Inventory());
+		} else {
+			return inventory;
+		}
+	}
+	
 	private Appliance createLoanableItem(String manufacturer, String model, double price) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Customer addCustomer(String name, String address, String phone) {
-		Customer member = new Customer(name, address, phone);
-		if (customerList.insertCustomer(member)) {
-			return (member);
-		}
-		return null;
-	}
-
-	public Object searchMembership(String customerId) {
+	public Customer searchMembership(String customerId) {
 		return customerList.search(customerId);
 	}
 
 	public Object searchBackorder(String applianceId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	/**
+	 * Retrieves a deserialized version of the library from disk
+	 * 
+	 * @return a Library object
+	 */
+	public static Company retrieve() {
+		try {
+			FileInputStream file = new FileInputStream("CompanyData");
+			ObjectInputStream input = new ObjectInputStream(file);
+			input.readObject();
+			CustomerIdServer.retrieve(input);
+			return company;
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return null;
+		} catch (ClassNotFoundException cnfe) {
+			cnfe.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * Serializes the Library object
+	 * 
+	 * @return true iff the data could be saved
+	 */
+	public static boolean save() {
+		ObjectOutputStream output = null;
+		try {
+			FileOutputStream file = new FileOutputStream("CompanyData");
+			output = new ObjectOutputStream(file);
+			output.writeObject(company);
+			output.writeObject(CustomerIdServer.instance());
+			output.close();
+			return true;
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * Writes the object to the output stream
+	 * 
+	 * @param output
+	 *            the stream to be written to
+	 */
+	private void writeObject(java.io.ObjectOutputStream output)
+			throws IOException {
+		output.defaultWriteObject();
+		output.writeObject(company);
+	}
+
+	/**
+	 * Reads the object from a given stream
+	 * 
+	 * @param input
+	 *            the stream to be read
+	 */
+	private void readObject(java.io.ObjectInputStream input)
+			throws IOException, ClassNotFoundException {
+		input.defaultReadObject();
+		if (company == null) {
+			company = (company) input.readObject();
+		} else {
+			input.readObject();
+		}
+	}
+
+	/**
+	 * String form of the library
+	 * 
+	 */
+	@Override
+	public String toString() {
+		return inventory + "\n" + customerList;
 	}
 
 }
