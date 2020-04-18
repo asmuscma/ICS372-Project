@@ -53,6 +53,10 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 		return price;
 	}
 
+	public boolean matches(String key) {
+		return this.getID().equals(key);
+	}
+
 	/**
 	 * toString method for appliances
 	 */

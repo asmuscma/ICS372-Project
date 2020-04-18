@@ -7,12 +7,14 @@ public class Order implements Serializable {
 	private String customerID;
 	private String applianceID;
 	private double orderCost;
+	private int quantity;
 	private Calendar date;
 
-	public Order(String customerID, String applianceID, double orderCost, Calendar date) {
+	public Order(String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
 		this.customerID = customerID;
 		this.applianceID = applianceID;
 		this.orderCost = orderCost;
+		this.quantity = quantity;
 		date = new GregorianCalendar();
 		date.setTimeInMillis(System.currentTimeMillis());
 	}
@@ -37,6 +39,10 @@ public class Order implements Serializable {
 
 	public String getDate() {
 		return date.get(Calendar.MONTH) + "/" + date.get(Calendar.DATE) + "/" + date.get(Calendar.YEAR);
+	}
+
+	public int getQuantity() {
+		return quantity;
 	}
 
 	@Override

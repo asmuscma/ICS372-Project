@@ -1,3 +1,4 @@
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -18,21 +19,14 @@
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Iterator;
 
-/** 
+/**
  * This is an implementation of a Company that uses the facade pattern.
  * 
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  *
- * */
+ */
 public class Company implements Serializable {
 	private static final long serialVersionUID = 1L;
 	public static final int ITEM_NOT_FOUND = 1;
@@ -50,11 +44,12 @@ public class Company implements Serializable {
 	public static final int REFRIGERATOR = 3;
 	private Catalog catalog;
 	private CustomerList customerList;
+	private OrderList orderList;
 	private static Company company;
-	
+
 	/**
-	 * Private for the singleton pattern Creates the catalog and customer
-	 * collection objects
+	 * Private for the singleton pattern Creates the catalog and customer collection
+	 * objects
 	 */
 	private Company() {
 		catalog = Catalog.instance();
@@ -74,6 +69,5 @@ public class Company implements Serializable {
 			return company;
 		}
 	}
-	
-	
+
 }

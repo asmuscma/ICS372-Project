@@ -22,13 +22,4 @@ public class Furnace extends Appliance implements Serializable, Matchable<String
 	public double getHeatingCapacity() {
 		return heatingCapacity;
 	}
-
-	/**
-	 *
-	 */
-	@Override
-	public boolean matches(String key) {
-		// TODO Auto-generated method stub
-		return this.getID().equals(key);
-	}
 }

@@ -17,18 +17,10 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 	}
 
 	/**
-	 * @return repairPlanCost of the WasherDryer
+	 * @return repairPlanCost of the WasherDryer0
 	 */
 	public double getRepairPlanCost() {
 		return repairPlanCost;
 	}
 
-	/**
-	 *
-	 */
-	@Override
-	public boolean matches(String key) {
-		// TODO Auto-generated method stub
-		return this.getID().equals(key);
-	}
 }

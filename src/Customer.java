@@ -5,18 +5,18 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;*/
 
-public class Customer implements Serializable {
-	//private static final long serialVersionUID = 1L;
+public class Customer implements Matchable<String>, Serializable {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String phone;
-	private String id;
-	//private static final String MEMBER_STRING = "M";
-	
-	public Customer(String name, String phone, String id){
+	private String customerID;
+	// private static final String MEMBER_STRING = "M";
+
+	public Customer(String name, String phone, String id) {
 		this.name = name;
 		this.phone = phone;
-		this.id = id;
-		//id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
+		this.customerID = id;
+		// id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
 	}
 
 	public String getName() {
@@ -35,12 +35,19 @@ public class Customer implements Serializable {
 		this.phone = phone;
 	}
 
-	public String getId() {
-		return id;
+	public String getID() {
+		return customerID;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.customerID = id;
+	}
+
+	/**
+	 *
+	 */
+	public boolean matches(String key) {
+		return this.getID().equals(key);
 	}
 
 }

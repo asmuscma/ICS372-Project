@@ -22,14 +22,4 @@ public class Refrigerator extends Appliance implements Serializable, Matchable<S
 	public double getStorageCapacity() {
 		return storageCapacity;
 	}
-
-	/**
-	 *
-	 */
-	@Override
-	public boolean matches(String key) {
-		// TODO Auto-generated method stub
-		return this.getID().equals(key);
-	}
-
 }
