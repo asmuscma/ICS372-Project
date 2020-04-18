@@ -74,7 +74,7 @@ public class Company implements Serializable {
 			return company;
 		}
 	}
-	
+
 	public Customer addCustomer(String name, String address, String phone) {
 		Customer member = new Customer(name, address, phone);
 		if (customerList.insertCustomer(member)) {
@@ -84,19 +84,18 @@ public class Company implements Serializable {
 	}
 
 	public Appliance addAppliance(String manufacturer, String model, String applianceID, double price) {
+		// TODO ApplianceId shouldn't be here, it is generated automatically
 		Appliance item = instance().createLoanableItem(manufacturer, model, applianceID, price);
 		if (inventory.insertLoanableItem(item)) {
 			return (item);
 		}
 		return null;
 	}
-	
-	
-	
+
 	public Inventory searchInventory(String applianceId) {
-			return inventory;
+		return inventory;
 	}
-	
+
 	private Appliance createLoanableItem(String manufacturer, String model, double price) {
 		// TODO Auto-generated method stub
 		return null;
@@ -110,7 +109,6 @@ public class Company implements Serializable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	/**
 	 * Retrieves a deserialized version of the library from disk
@@ -156,11 +154,9 @@ public class Company implements Serializable {
 	/**
 	 * Writes the object to the output stream
 	 * 
-	 * @param output
-	 *            the stream to be written to
+	 * @param output the stream to be written to
 	 */
-	private void writeObject(java.io.ObjectOutputStream output)
-			throws IOException {
+	private void writeObject(java.io.ObjectOutputStream output) throws IOException {
 		output.defaultWriteObject();
 		output.writeObject(company);
 	}
@@ -168,11 +164,9 @@ public class Company implements Serializable {
 	/**
 	 * Reads the object from a given stream
 	 * 
-	 * @param input
-	 *            the stream to be read
+	 * @param input the stream to be read
 	 */
-	private void readObject(java.io.ObjectInputStream input)
-			throws IOException, ClassNotFoundException {
+	private void readObject(java.io.ObjectInputStream input) throws IOException, ClassNotFoundException {
 		input.defaultReadObject();
 		if (company == null) {
 			company = (company) input.readObject();
