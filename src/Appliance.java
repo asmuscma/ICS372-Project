@@ -65,4 +65,8 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 		return "Appliance [manufacturer=" + manufacturer + ", model=" + model + ", applianceID=" + applianceID
 				+ ", price=" + price + "]";
 	}
+
+	public void accept(ApplianceVisitor visitor) {
+		visitor.visit(this);
+	}
 }

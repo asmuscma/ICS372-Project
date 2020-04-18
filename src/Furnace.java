@@ -22,4 +22,9 @@ public class Furnace extends Appliance implements Serializable, Matchable<String
 	public double getHeatingCapacity() {
 		return heatingCapacity;
 	}
+
+	@Override
+	public void accept(ApplianceVisitor visitor) {
+		visitor.visit(this);
+	}
 }

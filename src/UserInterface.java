@@ -305,10 +305,20 @@ public class UserInterface {
 	}
 
 	/**
-	 * TODO Implement this
+	 * TODO Implement this and fix it
 	 */
 	public void addRepairPlan() {
-
+		String customerId = getToken("Please enter the customer id");
+		if (company.searchMembership(customerId) == null) {
+			System.out.println("No such customer");
+			return;
+		}
+		do {
+			String applianceId = getToken("Please enter the appliance id");
+			if (company.searchAppliance(applianceId) != null) { 
+				
+			}
+		}
 	}
 
 	/**
@@ -358,7 +368,7 @@ public class UserInterface {
 		Customer result;
 		do {
 			String repairPlanId = getToken("Please enter the repairPlanId");
-			result = company.processRepairPlan(applianceId);
+			result = company.processRepairPlan(repairPlanId);
 			if (result != null) {
 				System.out.println(result);
 			} else {
@@ -371,10 +381,14 @@ public class UserInterface {
 	}
 
 	/**
-	 * TODO Implement this
+	 * Method to be called for printing out the total revenue. Uses the Company
+	 * method to calculate the total revenue from sale of appliances and repair
+	 * plans.
 	 */
 	public void getRevenue() {
-
+		double revenue;
+		revenue = company.getRevenue();
+		System.out.println("Total Revenue: $" + revenue);
 	}
 
 	/**
