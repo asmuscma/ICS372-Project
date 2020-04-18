@@ -5,13 +5,13 @@ public class Customer implements Matchable<String>, Serializable {
 	private String name;
 	private String phone;
 	private String customerID;
-	// private static final String MEMBER_STRING = "M";
+	private static final String MEMBER_STRING = "M";
 
 	public Customer(String name, String phone, String id) {
 		this.name = name;
 		this.phone = phone;
 		this.customerID = id;
-		// id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
+		id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
 	}
 
 	public String getName() {
