@@ -21,6 +21,7 @@ import java.io.IOException;
 
 
 /**
+ * CustomerList
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  *
  */
