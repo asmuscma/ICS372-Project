@@ -1,6 +1,7 @@
 
 import java.io.Serializable;
 import java.util.Calendar;
+<<<<<<< HEAD
 import java.util.GregorianCalendar;
 
 public abstract class Purchases implements Serializable {
@@ -57,6 +58,18 @@ public abstract class Purchases implements Serializable {
 		return "Order [customerID=" + customerID + ", applianceID=" + applianceID + ", orderCost=" + orderCost + "]";
 	}
 
+=======
+
+public class Purchases extends Order implements Matchable<String>, Serializable {
+	private static final long serialVersionUID = 1L;
+
+	public Purchases(String orderID, String customerID, String applianceID, double orderCost, int quantity,
+			Calendar date) {
+		super(orderID, customerID, applianceID, orderCost, quantity, date);
+	}
+
+	@Override
+>>>>>>> 2b5b23b4bdd904d61db8487a9230067488d0db44
 	public boolean matches(String key) {
 		return this.getID().equals(key);
 	}
