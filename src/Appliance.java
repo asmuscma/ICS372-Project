@@ -1,5 +1,9 @@
 import java.io.Serializable;
 
+/**
+ * @author tarnd
+ *
+ */
 public abstract class Appliance implements Matchable<String>, Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -8,6 +12,12 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 	private String applianceID;
 	private double price;
 
+	/**
+	 * @param manufacturer appliance manufacturer
+	 * @param model        appliance model
+	 * @param applianceID  appliance ID
+	 * @param price        appliance price
+	 */
 	public Appliance(String manufacturer, String model, String applianceID, double price) {
 		this.manufacturer = manufacturer;
 		this.model = model;
@@ -15,22 +25,37 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 		this.price = price;
 	}
 
+	/**
+	 * @return the manufacturer
+	 */
 	public String getManufacturer() {
 		return manufacturer;
 	}
 
+	/**
+	 * @return model name
+	 */
 	public String getModel() {
 		return model;
 	}
 
+	/**
+	 * @return ID number of the appliance
+	 */
 	public String getID() {
 		return applianceID;
 	}
 
+	/**
+	 * @return price of the appliance
+	 */
 	public double getPrice() {
 		return price;
 	}
 
+	/**
+	 * toString method for appliances
+	 */
 	@Override
 	public String toString() {
 		return "Appliance [manufacturer=" + manufacturer + ", model=" + model + ", applianceID=" + applianceID
