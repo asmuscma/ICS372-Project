@@ -23,7 +23,7 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 		return model;
 	}
 
-	public String getApplianceID() {
+	public String getID() {
 		return applianceID;
 	}
 
