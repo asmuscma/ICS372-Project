@@ -42,7 +42,7 @@ public class Company implements Serializable {
 	public static final int WASHERDRYER = 1;
 	public static final int FURNACE = 2;
 	public static final int REFRIGERATOR = 3;
-	private Catalog catalog;
+	private Inventory inventory;
 	private CustomerList customerList;
 	private OrderList orderList;
 	private static Company company;
@@ -52,7 +52,7 @@ public class Company implements Serializable {
 	 * objects
 	 */
 	private Company() {
-		catalog = Catalog.instance();
+		inventory = Inventory.instance();
 		customerList = CustomerList.instance();
 	}
 

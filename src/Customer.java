@@ -1,9 +1,4 @@
 import java.io.Serializable;
-/*import java.util.Calendar;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;*/
 
 public class Customer implements Matchable<String>, Serializable {
 	private static final long serialVersionUID = 1L;
