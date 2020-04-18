@@ -1,5 +1,9 @@
 import java.io.Serializable;
 
+/**
+ * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
+ *
+ */
 public class WasherDryer extends Appliance implements Serializable, Matchable<String> {
 	private static final long serialVersionUID = 1L;
 	private double repairPlanCost;
