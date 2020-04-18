@@ -54,7 +54,6 @@ public class Company implements Serializable {
 	private Company() {
 		inventory = Inventory.instance();
 		customerList = CustomerList.instance();
-		orderList = OrderList.instance();
 	}
 
 	/**
@@ -70,5 +69,7 @@ public class Company implements Serializable {
 			return company;
 		}
 	}
+	
+	
 
 }
