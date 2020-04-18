@@ -1,9 +1,33 @@
+import java.io.Serializable;
 
-public class Appliance {
+public abstract class Appliance implements Matchable<String>, Serializable {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private static final long serialVersionUID = 1L;
+	private String manufacturer;
+	private String model;
+	private String applianceID;
+	private double price;
 
+	public Appliance(String manufacturer, String model, String applianceID, double price) {
+		this.manufacturer = manufacturer;
+		this.model = model;
+		this.applianceID = applianceID;
+		this.price = price;
 	}
 
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public String getApplianceID() {
+		return applianceID;
+	}
+
+	public double getPrice() {
+		return price;
+	}
 }
