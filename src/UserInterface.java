@@ -1,3 +1,4 @@
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -18,7 +19,6 @@
  * and are not responsible for any loss or damage resulting from its use.  
  */
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,7 +26,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Iterator;
 import java.util.StringTokenizer;
 
 /**
@@ -36,7 +35,7 @@ import java.util.StringTokenizer;
  * 
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  * 
- * */
+ */
 public class UserInterface {
 	private static UserInterface userInterface;
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -56,9 +55,10 @@ public class UserInterface {
 	private static final int RETRIEVE = 12;
 	private static final int PRINT_FORMATTED = 13;
 	private static final int HELP = 14;
-	
-	/** 
-	 * Private constructor to implement the singleton pattern. It looks for any saved data, otherwise it will get a singleton Company object.
+
+	/**
+	 * Private constructor to implement the singleton pattern. It looks for any
+	 * saved data, otherwise it will get a singleton Company object.
 	 */
 	private UserInterface() {
 		if (yesOrNo("Look for saved data and use it?")) {
@@ -67,7 +67,7 @@ public class UserInterface {
 			company = Company.instance();
 		}
 	}
-	
+
 	/**
 	 * Supports the singleton pattern
 	 * 
@@ -84,8 +84,7 @@ public class UserInterface {
 	/**
 	 * Gets a token after prompting
 	 * 
-	 * @param prompt
-	 *            - whatever the user wants as prompt
+	 * @param prompt - whatever the user wants as prompt
 	 * @return - the token from the keyboard
 	 * 
 	 */
@@ -107,8 +106,7 @@ public class UserInterface {
 	/**
 	 * Queries for a yes or no and returns true for yes and false for no
 	 * 
-	 * @param prompt
-	 *            The string to be prepended to the yes/no prompt
+	 * @param prompt The string to be prepended to the yes/no prompt
 	 * @return true for yes and false for no
 	 * 
 	 */
@@ -123,8 +121,7 @@ public class UserInterface {
 	/**
 	 * Converts the string to a number
 	 * 
-	 * @param prompt
-	 *            the string for prompting
+	 * @param prompt the string for prompting
 	 * @return the integer corresponding to the string
 	 * 
 	 */
@@ -143,8 +140,7 @@ public class UserInterface {
 	/**
 	 * Prompts for a date and gets a date object
 	 * 
-	 * @param prompt
-	 *            the prompt
+	 * @param prompt the prompt
 	 * @return the data as a Calendar object
 	 */
 	public Calendar getDate(String prompt) {
@@ -152,8 +148,7 @@ public class UserInterface {
 			try {
 				Calendar date = new GregorianCalendar();
 				String item = getToken(prompt);
-				DateFormat dateFormat = SimpleDateFormat
-						.getDateInstance(DateFormat.SHORT);
+				DateFormat dateFormat = SimpleDateFormat.getDateInstance(DateFormat.SHORT);
 				date.setTime(dateFormat.parse(item));
 				return date;
 			} catch (Exception fe) {
@@ -171,8 +166,7 @@ public class UserInterface {
 	public int getCommand() {
 		do {
 			try {
-				int value = Integer.parseInt(getToken("Enter command:" + HELP
-						+ " for help"));
+				int value = Integer.parseInt(getToken("Enter command:" + HELP + " for help"));
 				if (value >= EXIT && value <= HELP) {
 					return value;
 				}
@@ -187,8 +181,7 @@ public class UserInterface {
 	 * 
 	 */
 	public void help() {
-		System.out
-				.println("Enter a number between 0 and 12 as explained below:");
+		System.out.println("Enter a number between 0 and 12 as explained below:");
 		System.out.println(EXIT + " to Exit\n");
 		System.out.println(ADD_CUSTOMER + " to add a customer");
 		System.out.println(ADD_APPLIANCE + " to add appliances");
@@ -205,7 +198,7 @@ public class UserInterface {
 		System.out.println(PRINT_FORMATTED + " to  print items formatted");
 		System.out.println(HELP + " for help");
 	}
-	
+
 	/**
 	 * Method to be called for adding a customer. Prompts the user for the
 	 * appropriate values and uses the appropriate Company method for adding the
@@ -223,24 +216,83 @@ public class UserInterface {
 		}
 		System.out.println(result);
 	}
-	
+
+	/**
+	 * This method is to be called when you need to add an appliance. It will prompt
+	 * the user for the manufacturer, model, and price. Uses the company method to
+	 * add it to the appliance list.
+	 */
 	public void addAppliance() {
 		String manufacturer = getToken("Please enter the manufacturer id");
 		String model = getToken("Please enter the model");
 		double price = Double.parseDouble(getToken("Please enter the price"));
 		Appliance result;
-		result = company.addAppliance(manufacturer, model ,price);
+		result = company.addAppliance(manufacturer, model, price);
 		if (result == null) {
 			System.out.println("Could not add member");
 		}
 		System.out.println(result);
 	}
-	
+
+	/**
+	 * This method is to be called when you need to place an order on an appliance.
+	 * It will prompt the user for a customerId and check if it is valid before
+	 * asking for the applianceId and quantity. It uses the Company method to add it
+	 * to the order list.
+	 */
 	public void addOrder() {
-		String applianceId = getToken("Please enter the appliance id");
+		Appliance result;
+		String customerId = getToken("Please enter the customer id");
+		if (company.searchMembership(customerID) == null) {
+			System.out.println("No such member");
+			return;
+		}
+		do {
+			String applianceId = getToken("Please enter the appliance id");
+			double quantity = Double.parseDouble(getToken("Please enter the quantity"));
+			result = company.addOrder(customerId, applianceId);
+			if (result != null) {
+				System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
+						+ "  " + quantity);
+			} else {
+				System.out.println("Appliance could not be sold");
+			}
+			if (!yesOrNo("Add more orders?")) {
+				break;
+			}
+		} while (true);
 	}
-	
+
+	/**
+	 * This method is to be called when you need to place a backorder on an
+	 * appliance. It will prompt the user for a customerId and check if it is valid
+	 * before asking for the applianceId and quantity. It uses the Company method to
+	 * add it to the order list.
+	 */
+	public void addBackorder() {
+		Appliance result;
+		String customerId = getToken("Please enter the customer id");
+		if (company.searchMembership(customerID) == null) {
+			System.out.println("No such member");
+			return;
+		}
+		do {
+			String applianceId = getToken("Please enter the appliance id");
+			double quantity = Double.parseDouble(getToken("Please enter the quantity"));
+			result = company.addBackorder(customerId, applianceId);
+			if (result != null) {
+				System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
+						+ "  " + quantity);
+			} else {
+				System.out.println("Appliance could not be backordered");
+			}
+			if (!yesOrNo("Add more backorders?")) {
+				break;
+			}
+		} while (true);
+	}
+
 	public static void main(int[] args) {
-		
+
 	}
 }

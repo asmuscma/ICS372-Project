@@ -2,15 +2,17 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Order implements Serializable {
+public class Order implements Matchable<String>, Serializable {
 	private static final long serialVersionUID = 1L;
+	private String orderID;
 	private String customerID;
 	private String applianceID;
 	private double orderCost;
 	private int quantity;
 	private Calendar date;
 
-	public Order(String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
+	public Order(String orderID, String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
+		this.orderID = orderID;
 		this.customerID = customerID;
 		this.applianceID = applianceID;
 		this.orderCost = orderCost;
@@ -23,6 +25,10 @@ public class Order implements Serializable {
 		return ((date.get(Calendar.YEAR) == this.date.get(Calendar.YEAR))
 				&& (date.get(Calendar.MONTH) == this.date.get(Calendar.MONTH))
 				&& (date.get(Calendar.DATE) == this.date.get(Calendar.DATE)));
+	}
+
+	public String getOrderID() {
+		return orderID;
 	}
 
 	public String getCustomerID() {
@@ -48,6 +54,12 @@ public class Order implements Serializable {
 	@Override
 	public String toString() {
 		return "Order [customerID=" + customerID + ", applianceID=" + applianceID + ", orderCost=" + orderCost + "]";
+	}
+
+	@Override
+	public boolean matches(String key) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
