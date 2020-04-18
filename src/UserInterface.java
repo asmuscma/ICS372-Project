@@ -243,8 +243,8 @@ public class UserInterface {
 	public void addOrder() {
 		Appliance result;
 		String customerId = getToken("Please enter the customer id");
-		if (company.searchMembership(customerID) == null) {
-			System.out.println("No such member");
+		if (company.searchMembership(customerId) == null) {
+			System.out.println("No such customer");
 			return;
 		}
 		do {
@@ -272,8 +272,8 @@ public class UserInterface {
 	public void addBackorder() {
 		Appliance result;
 		String customerId = getToken("Please enter the customer id");
-		if (company.searchMembership(customerID) == null) {
-			System.out.println("No such member");
+		if (company.searchMembership(customerId) == null) {
+			System.out.println("No such customer");
 			return;
 		}
 		do {
@@ -290,6 +290,12 @@ public class UserInterface {
 				break;
 			}
 		} while (true);
+	}
+
+	/** 
+	 * 
+	 * */
+	public void addRepairPlan() {
 	}
 
 	public static void main(int[] args) {
