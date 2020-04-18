@@ -27,4 +27,8 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 		return repairPlanCost;
 	}
 
+	public void accept(ApplianceVisitor visitor) {
+		visitor.visit(this);
+	}
+
 }
