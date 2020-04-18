@@ -415,7 +415,7 @@ public class UserInterface {
 	 * Prints the items in a unique format for each type of item.
 	 */
 	public void printFormatted() {
-		company.processLoanableItems(PrintFormat.instance());
+		company.processAppliances(PrintFormat.instance());
 	}
 
 	/**
