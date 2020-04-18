@@ -69,6 +69,38 @@ public class Company implements Serializable {
 			return company;
 		}
 	}
+
+	public Appliance addAppliance(String manufacturer, String model, double price) {
+			Appliance item = .instance().createLoanableItem(
+					manufacturer, model, price);
+			if (inventory.insertLoanableItem(item)) {
+				return (item);
+			}
+			return null;
+		return null;
+	}
+
+	public Customer addCustomer(String name, String address, String phone) {
+		Customer member = new Customer(name, address, phone);
+		if (customerList.insertCustomer(member)) {
+			return (member);
+		}
+		return null;
+	}
+
+	public Object searchMembership(String customerId) {
+		return customerList.search(customerId);
+	}
+
+	public Appliance addOrder(String customerId, String applianceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Appliance addBackorder(String customerId, String applianceId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 
