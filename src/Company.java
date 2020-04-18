@@ -83,13 +83,12 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Appliance addAppliance(String manufacturer, String model, double price) {
-			Appliance item = instance().createLoanableItem(
-					manufacturer, model, price);
-			if (inventory.insertLoanableItem(item)) {
-				return (item);
-			}
-			return null;
+	public Appliance addAppliance(String manufacturer, String model, String applianceID, double price) {
+		Appliance item = instance().createLoanableItem(manufacturer, model, applianceID, price);
+		if (inventory.insertLoanableItem(item)) {
+			return (item);
+		}
+		return null;
 	}
 	
 	
