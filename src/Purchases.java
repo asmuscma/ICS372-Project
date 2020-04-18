@@ -57,7 +57,6 @@ public abstract class Purchases implements Serializable {
 		return "Order [customerID=" + customerID + ", applianceID=" + applianceID + ", orderCost=" + orderCost + "]";
 	}
 
-	@Override
 	public boolean matches(String key) {
 		return this.getID().equals(key);
 	}
