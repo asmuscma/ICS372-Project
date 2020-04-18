@@ -224,6 +224,22 @@ public class UserInterface {
 		System.out.println(result);
 	}
 	
+	public void addAppliance() {
+		String manufacturer = getToken("Please enter the manufacturer id");
+		String model = getToken("Please enter the model");
+		double price = Double.parseDouble(getToken("Please enter the price"));
+		Appliance result;
+		result = company.addAppliance(manufacturer, model ,price);
+		if (result == null) {
+			System.out.println("Could not add member");
+		}
+		System.out.println(result);
+	}
+	
+	public void addOrder() {
+		String applianceId = getToken("Please enter the appliance id");
+	}
+	
 	public static void main(int[] args) {
 		
 	}
