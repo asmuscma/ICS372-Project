@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 /**
  * Implements Orders
+ * 
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  *
  */
@@ -39,7 +40,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * @param date
-	 * @return 
+	 * @return
 	 */
 	public boolean onDate(Calendar date) {
 		return ((date.get(Calendar.YEAR) == this.date.get(Calendar.YEAR))
@@ -49,6 +50,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for orderID
+	 * 
 	 * @return orderID
 	 */
 	public String getID() {
@@ -57,6 +59,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for customerID
+	 * 
 	 * @return customerID
 	 */
 	public String getCustomerID() {
@@ -65,6 +68,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for applianceID
+	 * 
 	 * @return applianceID
 	 */
 	public String getApplianceID() {
@@ -73,6 +77,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for orderCost
+	 * 
 	 * @return orderCost
 	 */
 	public double getOrderCost() {
@@ -81,6 +86,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for date
+	 * 
 	 * @return date
 	 */
 	public String getDate() {
@@ -89,23 +95,18 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for quantity
+	 * 
 	 * @return quantity
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "Order [customerID=" + customerID + ", applianceID=" + applianceID + ", orderCost=" + orderCost + "]";
 	}
 
-	/* (non-Javadoc)
-	 * @see Matchable#matches(java.lang.Object)
-	 */
 	@Override
 	public boolean matches(String key) {
 		return this.getID().equals(key);
