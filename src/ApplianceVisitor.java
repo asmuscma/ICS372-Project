@@ -25,36 +25,31 @@
  */
 public interface ApplianceVisitor {
 	/**
-	 * This is the method for catching all Appliance objects that may be
-	 * added in the future.
+	 * This is the method for catching all Appliance objects that may be added in
+	 * the future.
 	 * 
-	 * @param item
-	 *            the item to be processed
+	 * @param item the item to be processed
 	 */
 	public void visit(Appliance item);
 
 	/**
 	 * This method processes WasherDryer objects
 	 * 
-	 * @param book
-	 *            the WasherDryer to be processed
+	 * @param book the WasherDryer to be processed
 	 */
 	public void visit(WasherDryer washerdryer);
 
 	/**
 	 * The method processes Furnace objects
 	 * 
-	 * @param furnace
-	 *            the Furnace to be processed
+	 * @param furnace the Furnace to be processed
 	 */
-	public void visit(Furance furnace);
-}
+	public void visit(Furnace furnace);
 
-/**
- * The method processes Refrigerator objects
- * 
- * @param Refrigerator
- *            the Refrigerator to be processed
- */
-public void visit(Refrigerator refrigerator);
+	/**
+	 * The method processes Refrigerator objects
+	 * 
+	 * @param Refrigerator the Refrigerator to be processed
+	 */
+	public void visit(Refrigerator refrigerator);
 }
