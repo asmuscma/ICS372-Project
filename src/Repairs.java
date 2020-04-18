@@ -10,15 +10,14 @@ public class Repairs extends Order implements Matchable<String>, Serializable {
 			Calendar date) {
 		super(orderID, customerID, applianceID, orderCost, quantity, date);
 		this.active = true;
-		this.repairable = false;
 	}
 
 	public boolean getActive() {
 		return active;
 	}
 
-	public boolean getRepairable() {
-		if (this.getClass().isInstance(WasherDryer))
-			;
+	public boolean cancelPlan() {
+		this.active = false;
+		return active;
 	}
 }
