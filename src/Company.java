@@ -95,11 +95,7 @@ public class Company implements Serializable {
 	
 	
 	public Inventory searchInventory(String applianceId) {
-		if (inventory == null) {
-			return (inventory = new Inventory());
-		} else {
 			return inventory;
-		}
 	}
 	
 	private Appliance createLoanableItem(String manufacturer, String model, double price) {
