@@ -331,10 +331,10 @@ public class UserInterface {
 	}
 
 	/**
-	 * Method to be called for processing backorders. Prompts the user for the appropriate values and uses the Company method to process any backorders.
-	 * */
-	public void processBackorders
-	{
+	 * Method to be called for processing backorders. Prompts the user for the
+	 * appropriate values and uses the Company method to process any backorders.
+	 */
+	public void processBackorders() {
 		Customer result;
 		do {
 			String applianceId = getToken("Please enter the applianceId");
