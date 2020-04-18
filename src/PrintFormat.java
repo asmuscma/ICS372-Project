@@ -58,7 +58,7 @@ public class PrintFormat implements ApplianceVisitor {
 	 * string representation.
 	 */
 	@Override
-	public void visit(Washerdryer washerdryer) {
+	public void visit(WasherDryer washerdryer) {
 		System.out.println("Print " + washerdryer + " formatted");
 	}
 
