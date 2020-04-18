@@ -92,16 +92,4 @@ public class Company implements Serializable {
 		return customerList.search(customerId);
 	}
 
-	public Appliance addOrder(String customerId, String applianceId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Appliance addBackorder(String customerId, String applianceId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-
 }
