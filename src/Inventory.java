@@ -1,3 +1,4 @@
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -26,9 +27,10 @@ import java.io.IOException;
  *
  */
 public class Inventory extends ItemList<Appliance, String> {
+	private static final long serialVersionUID = 1L;
 	private static Inventory inventory;
 
-	/*
+	/**
 	 * Private constructor for singleton pattern
 	 */
 	private Inventory() {
@@ -51,8 +53,13 @@ public class Inventory extends ItemList<Appliance, String> {
 	 * Removes an appliance from the catalog
 	 * 
 	 * @param applianceId
+<<<<<<< HEAD
 	 *            book id
 	 * @return true if book could be removed
+=======
+	 * 
+	 * @return true if appliance could be removed
+>>>>>>> 2ef4b4014b40be0e5b3a11da85a7698ac073b669
 	 */
 	public boolean removeAppliance(String applianceId) {
 		Appliance appliance = search(applianceId);
@@ -66,32 +73,29 @@ public class Inventory extends ItemList<Appliance, String> {
 	/**
 	 * Inserts an appliance into the collection
 	 * 
-	 * @param appliance
-	 *            the appliance to be inserted
+	 * @param appliance the appliance to be inserted
 	 * @return true if the appliance could be inserted. Currently always true
 	 */
-	public boolean insertLoanableItem(Appliance appliance) {
+	public boolean insertAppliance(Appliance appliance) {
 		return super.add(appliance);
 	}
 
-	/*
+	/**
 	 * Supports serialization
 	 * 
 	 * @param output the stream to be written to
 	 */
-	private void writeObject(java.io.ObjectOutputStream output)
-			throws IOException {
+	private void writeObject(java.io.ObjectOutputStream output) throws IOException {
 		output.defaultWriteObject();
 		output.writeObject(inventory);
 	}
 
-	/*
+	/**
 	 * Supports deserialization
 	 * 
 	 * @param input the stream to be read from
 	 */
-	private void readObject(java.io.ObjectInputStream input)
-			throws IOException, ClassNotFoundException {
+	private void readObject(java.io.ObjectInputStream input) throws IOException, ClassNotFoundException {
 		input.defaultReadObject();
 		if (inventory == null) {
 			inventory = (Inventory) input.readObject();
