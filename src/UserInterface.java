@@ -350,7 +350,136 @@ public class UserInterface {
 		} while (true);
 	}
 
-	public static void main(int[] args) {
+	/**
+	 * Method to be called for processing repair plans. Prompts the user for the
+	 * appropriate values and uses the Company method to process any repair plans.
+	 */
+	public void processRepairPlans() {
+		Customer result;
+		do {
+			String repairPlanId = getToken("Please enter the repairPlanId");
+			result = company.processRepairPlan(applianceId);
+			if (result != null) {
+				System.out.println(result);
+			} else {
+				System.out.println("No valid repair plans left");
+			}
+			if (!yesOrNo("Process more repair plans?")) {
+				break;
+			}
+		} while (true);
+	}
 
+	/**
+	 * TODO Implement this
+	 */
+	public void getRevenue() {
+
+	}
+
+	/**
+	 * Method to be called for saving the Company object. Uses the appropriate
+	 * Company method for saving.
+	 * 
+	 */
+	private void save() {
+		if (Company.save()) {
+			System.out.println(" The library has been successfully saved in the file LibraryData \n");
+		} else {
+			System.out.println(" There has been an error in saving \n");
+		}
+	}
+
+	/**
+	 * Method to be called for retrieving saved data. Uses the appropriate Library
+	 * method for retrieval.
+	 * 
+	 */
+	private void retrieve() {
+		try {
+			Company tempLibrary = Company.retrieve();
+			if (tempLibrary != null) {
+				System.out.println(" The library has been successfully retrieved from the file LibraryData \n");
+				company = tempLibrary;
+			} else {
+				System.out.println("File doesnt exist; creating new library");
+				company = Company.instance();
+			}
+		} catch (Exception cnfe) {
+			cnfe.printStackTrace();
+		}
+	}
+
+	/**
+	 * 
+	 * Prints the items in a unique format for each type of item.
+	 */
+	public void printFormatted() {
+		company.processLoanableItems(PrintFormat.instance());
+	}
+
+	/**
+	 * Orchestrates the whole process. Calls the appropriate method for the
+	 * different functionalties.
+	 * 
+	 */
+	public void process() {
+		int command;
+		help();
+		while ((command = getCommand()) != EXIT) {
+			switch (command) {
+			case ADD_CUSTOMER:
+				addCustomer();
+				break;
+			case ADD_APPLIANCE:
+				addAppliance();
+				break;
+			case ADD_ORDER:
+				addOrder();
+				break;
+			case ADD_BACKORDER:
+				addBackorder();
+				break;
+			case ADD_REPAIRPLAN:
+				addRepairPlan();
+				break;
+			case ADD_ITEM:
+				addItem();
+				break;
+			case GET_ORDERS:
+				getOrders();
+				break;
+			case PROCESS_BACKORDERS:
+				processBackorders();
+				break;
+			case PROCESS_REPAIRPLANS:
+				processRepairPlans();
+				break;
+			case GET_REVENUE:
+				getRevenue();
+				break;
+			case SAVE:
+				save();
+				break;
+			case RETRIEVE:
+				retrieve();
+				break;
+			case PRINT_FORMATTED:
+				printFormatted();
+				break;
+			case HELP:
+				help();
+				break;
+			}
+		}
+	}
+
+	/**
+	 * The method to start the application. Simply calls process().
+	 * 
+	 * @param args not used
+	 */
+	public static void main(int[] args) {
+		UserInterface.instance().process();
 	}
 }
