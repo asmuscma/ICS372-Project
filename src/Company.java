@@ -92,8 +92,8 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Inventory searchInventory(String applianceId) {
-		return inventory;
+	public Appliance searchInventory(String applianceId) {
+		return inventory.search(applianceId);
 	}
 
 	private Appliance createLoanableItem(String manufacturer, String model, double price) {
@@ -105,9 +105,8 @@ public class Company implements Serializable {
 		return customerList.search(customerId);
 	}
 
-	public Object searchBackorder(String applianceId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Appliance searchBackorder(String applianceId) {
+		return backorderList.search(applianceId);
 	}
 
 	/**
@@ -169,7 +168,7 @@ public class Company implements Serializable {
 	private void readObject(java.io.ObjectInputStream input) throws IOException, ClassNotFoundException {
 		input.defaultReadObject();
 		if (company == null) {
-			company = (company) input.readObject();
+			company = (Company) input.readObject();
 		} else {
 			input.readObject();
 		}
