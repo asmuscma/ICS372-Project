@@ -239,6 +239,8 @@ public class UserInterface {
 	 * It will prompt the user for a customerId and check if it is valid before
 	 * asking for the applianceId and quantity. It uses the Company method to add it
 	 * to the order list.
+	 * 
+	 * TODO: Check if enough are in stock
 	 */
 	public void addOrder() {
 		Appliance result;
@@ -249,16 +251,20 @@ public class UserInterface {
 		}
 		do {
 			String applianceId = getToken("Please enter the appliance id");
-			double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-			result = company.addOrder(customerId, applianceId);
-			if (result != null) {
-				System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
-						+ "  " + quantity);
+			if (company.searchBackorder(applianceId) == null) {
+				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
+				result = company.addOrder(customerId, applianceId);
+				if (result != null) {
+					System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
+							+ "  " + quantity);
+				} else {
+					System.out.println("Appliance could not be sold");
+				}
+				if (!yesOrNo("Add more orders?")) {
+					break;
+				}
 			} else {
-				System.out.println("Appliance could not be sold");
-			}
-			if (!yesOrNo("Add more orders?")) {
-				break;
+				System.out.println("Appliance is on backorder");
 			}
 		} while (true);
 	}
@@ -268,6 +274,8 @@ public class UserInterface {
 	 * appliance. It will prompt the user for a customerId and check if it is valid
 	 * before asking for the applianceId and quantity. It uses the Company method to
 	 * add it to the order list.
+	 * 
+	 * TODO: Check if enough are in stock
 	 */
 	public void addBackorder() {
 		Appliance result;
@@ -278,24 +286,68 @@ public class UserInterface {
 		}
 		do {
 			String applianceId = getToken("Please enter the appliance id");
-			double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-			result = company.addBackorder(customerId, applianceId);
-			if (result != null) {
-				System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
-						+ "  " + quantity);
+			if (company.searchInventory(applianceId) == null) {
+				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
+				result = company.addBackorder(customerId, applianceId);
+				if (result != null) {
+					System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
+							+ "  " + quantity);
+				} else {
+					System.out.println("Appliance could not be backordered");
+				}
+				if (!yesOrNo("Add more backorders?")) {
+					break;
+				}
 			} else {
-				System.out.println("Appliance could not be backordered");
-			}
-			if (!yesOrNo("Add more backorders?")) {
-				break;
+				System.out.println("Appliance is already in stock");
 			}
 		} while (true);
 	}
 
-	/** 
-	 * 
-	 * */
+	/**
+	 * TODO Implement this
+	 */
 	public void addRepairPlan() {
+
+	}
+
+	/**
+	 * This method is to be used when the user needs to add an item to the
+	 * inventory. It will prompt the user for an applianceId and a quantity. Uses
+	 * the Company method to add items.
+	 */
+	public void addItem() {
+		String applianceId = getToken("Please enter the appliance id");
+		double quantity = Double.parseDouble(getToken("Please enter the quantity"));
+		company.addItem(applianceId, quantity);
+		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
+	}
+
+	/**
+	 * TODO Implement this
+	 */
+	public void getOrders() {
+
+	}
+
+	/**
+	 * Method to be called for processing backorders. Prompts the user for the
+	 * appropriate values and uses the Company method to process any backorders.
+	 */
+	public void processBackorders() {
+		Customer result;
+		do {
+			String applianceId = getToken("Please enter the applianceId");
+			result = company.processBackorder(applianceId);
+			if (result != null) {
+				System.out.println(result);
+			} else {
+				System.out.println("No valid backorders left");
+			}
+			if (!yesOrNo("Process more backorders?")) {
+				break;
+			}
+		} while (true);
 	}
 
 	public static void main(int[] args) {
