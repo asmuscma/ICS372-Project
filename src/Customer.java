@@ -1,22 +1,22 @@
 import java.io.Serializable;
-/*import java.util.Calendar;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;*/
+import java.util.ListIterator;
 
 public class Customer implements Serializable {
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String phone;
 	private String id;
-	//private static final String MEMBER_STRING = "M";
+	private static final String MEMBER_STRING = "M";
 	
 	public Customer(String name, String phone, String id){
 		this.name = name;
 		this.phone = phone;
 		this.id = id;
-		//id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
+		id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
 	}
 
 	public String getName() {
