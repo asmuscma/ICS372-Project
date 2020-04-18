@@ -25,13 +25,13 @@ import java.io.IOException;
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  *
  */
-public class Catalog extends ItemList<Appliance, String> {
-	private static Catalog catalog;
+public class Inventory extends ItemList<Appliance, String> {
+	private static Inventory inventory;
 
 	/*
 	 * Private constructor for singleton pattern
 	 */
-	private Catalog() {
+	private Inventory() {
 	}
 
 	/**
@@ -39,11 +39,11 @@ public class Catalog extends ItemList<Appliance, String> {
 	 * 
 	 * @return the singleton object
 	 */
-	public static Catalog instance() {
-		if (catalog == null) {
-			return (catalog = new Catalog());
+	public static Inventory instance() {
+		if (inventory == null) {
+			return (inventory = new Inventory());
 		} else {
-			return catalog;
+			return inventory;
 		}
 	}
 
@@ -82,7 +82,7 @@ public class Catalog extends ItemList<Appliance, String> {
 	private void writeObject(java.io.ObjectOutputStream output)
 			throws IOException {
 		output.defaultWriteObject();
-		output.writeObject(catalog);
+		output.writeObject(inventory);
 	}
 
 	/*
@@ -93,8 +93,8 @@ public class Catalog extends ItemList<Appliance, String> {
 	private void readObject(java.io.ObjectInputStream input)
 			throws IOException, ClassNotFoundException {
 		input.defaultReadObject();
-		if (catalog == null) {
-			catalog = (Catalog) input.readObject();
+		if (inventory == null) {
+			inventory = (Inventory) input.readObject();
 		} else {
 			input.readObject();
 		}
