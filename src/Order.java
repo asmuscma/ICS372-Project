@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Order implements Matchable<String>, Serializable {
+public abstract class Order implements Matchable<String>, Serializable {
 	private static final long serialVersionUID = 1L;
 	private String orderID;
 	private String customerID;
@@ -27,7 +27,7 @@ public class Order implements Matchable<String>, Serializable {
 				&& (date.get(Calendar.DATE) == this.date.get(Calendar.DATE)));
 	}
 
-	public String getOrderID() {
+	public String getID() {
 		return orderID;
 	}
 
@@ -58,8 +58,7 @@ public class Order implements Matchable<String>, Serializable {
 
 	@Override
 	public boolean matches(String key) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.getID().equals(key);
 	}
 
 }
