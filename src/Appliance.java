@@ -30,4 +30,10 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 	public double getPrice() {
 		return price;
 	}
+
+	@Override
+	public String toString() {
+		return "Appliance [manufacturer=" + manufacturer + ", model=" + model + ", applianceID=" + applianceID
+				+ ", price=" + price + "]";
+	}
 }

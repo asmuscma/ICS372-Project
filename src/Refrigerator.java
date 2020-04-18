@@ -16,6 +16,7 @@ public class Refrigerator extends Appliance implements Serializable, Matchable<S
 	@Override
 	public boolean matches(String key) {
 		// TODO Auto-generated method stub
-		return false;
+		return this.getID().equals(key);
 	}
+
 }

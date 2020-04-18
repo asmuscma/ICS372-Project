@@ -16,6 +16,6 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 	@Override
 	public boolean matches(String key) {
 		// TODO Auto-generated method stub
-		return false;
+		return this.getID().equals(key);
 	}
 }
