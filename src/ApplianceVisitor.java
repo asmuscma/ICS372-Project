@@ -25,7 +25,7 @@
  */
 public interface ApplianceVisitor {
 	/**
-	 * This is the method for catching all LoanableItem objects that may be
+	 * This is the method for catching all Appliance objects that may be
 	 * added in the future.
 	 * 
 	 * @param item
@@ -34,27 +34,27 @@ public interface ApplianceVisitor {
 	public void visit(Appliance item);
 
 	/**
-	 * This method processes Book objects
+	 * This method processes WasherDryer objects
 	 * 
 	 * @param book
-	 *            the Book to be processed
+	 *            the WasherDryer to be processed
 	 */
 	public void visit(WasherDryer washerdryer);
 
 	/**
-	 * The method processes Periodical objects
+	 * The method processes Furnace objects
 	 * 
-	 * @param periodical
-	 *            the Periodical to be processed
+	 * @param furnace
+	 *            the Furnace to be processed
 	 */
 	public void visit(Furance furnace);
 }
 
 /**
- * The method processes Periodical objects
+ * The method processes Refrigerator objects
  * 
- * @param periodical
- *            the Periodical to be processed
+ * @param Refrigerator
+ *            the Refrigerator to be processed
  */
 public void visit(Refrigerator refrigerator);
 }
