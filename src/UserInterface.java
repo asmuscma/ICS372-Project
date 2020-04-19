@@ -277,7 +277,7 @@ public class UserInterface {
 	 * before asking for the applianceId and quantity. It uses the Company method to
 	 * add it to the order list.
 	 * 
-	 * TODO: Check if enough are in stock
+	 * 
 	 */
 	public void addBackorder() {
 		Appliance result;
@@ -333,7 +333,6 @@ public class UserInterface {
 	 * TODO Implement this
 	 */
 	public void getOrders() {
-
 	}
 
 	/**
@@ -377,10 +376,11 @@ public class UserInterface {
 	}
 
 	/**
-	 * TODO Implement this
+	 * Method to be called for printing the total amount of revenue. Uses the
+	 * Company method to iterate through every order and add up the total money.
 	 */
 	public void getRevenue() {
-
+		System.out.println("Total revenue: $" + company.getRevenue());
 	}
 
 	/**
