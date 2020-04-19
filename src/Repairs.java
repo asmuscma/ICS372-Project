@@ -16,9 +16,4 @@ public class Repairs extends Order implements Matchable<String>, Serializable {
 	public boolean getActive() {
 		return active;
 	}
-
-	public boolean getRepairable() {
-		if (this.getClass().isInstance(WasherDryer))
-			;
-	}
 }
