@@ -49,6 +49,7 @@ public class Company implements Serializable {
 	public static final int REFRIGERATOR = 3;
 	private Inventory inventory;
 	private CustomerList customerList;
+	private ApplianceList applianceList;
 	private OrderList orderList;
 	private static Company company;
 
@@ -80,30 +81,32 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Appliance addAppliance(int type, String manufacturer, String model, String applianceID, double price,
-			double proprietary) {
-		Appliance item = ApplianceFactory.instance().createAppliance(type, manufacturer, model, applianceID, price,
-				proprietary);
-		if (inventory.insertAppliance(item)) {
+	public Appliance addModel(int type, String manufacturer, String model, double price, double proprietary) {
+		Appliance item = ApplianceFactory.instance().createAppliance(type, manufacturer, model, price, proprietary);
+		if (applianceList.insertAppliance(item)) {
 			return (item);
 		}
 		return null;
 	}
 
-	public String searchModel(String modelId) {
-		return inventory.search(modelId).getModel();
+	public String searchModel(String applianceId) {
+		return applianceList.search(applianceId).getModel();
 	}
 
-	public int searchInventory(String modelId) {
-		return inventory.searchInventory(modelId);
+	public boolean addInventory(String applianceId, int quantity) {
+		return inventory.removeAppliance(applianceId, quantity);
 	}
 
-	public Customer searchMembership(String customerId) {
+	public int searchInventory(String applianceId) {
+		return inventory.searchInventory(applianceId);
+	}
+
+	public Customer searchCustomer(String customerId) {
 		return customerList.search(customerId);
 	}
 
-	public Order searchBackorder(String applianceId) {
-		return orderList.search(applianceId);
+	public Order searchBackorder(String orderId) {
+		return orderList.search(orderId);
 	}
 
 	/**
