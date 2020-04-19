@@ -15,8 +15,8 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 	 * @param price
 	 * @param repairPlanCost
 	 */
-	public WasherDryer(String manufacturer, String model, String applianceID, double price, double repairPlanCost) {
-		super(manufacturer, model, applianceID, price);
+	public WasherDryer(String manufacturer, String model, double price, double repairPlanCost) {
+		super(manufacturer, model, price);
 		this.repairPlanCost = repairPlanCost;
 	}
 

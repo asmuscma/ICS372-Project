@@ -11,8 +11,8 @@ public class Furnace extends Appliance implements Serializable, Matchable<String
 	 * @param price
 	 * @param heatingCapacity
 	 */
-	public Furnace(String manufacturer, String model, String applianceID, double price, double heatingCapacity) {
-		super(manufacturer, model, applianceID, price);
+	public Furnace(String manufacturer, String model, double price, double heatingCapacity) {
+		super(manufacturer, model, price);
 		this.heatingCapacity = heatingCapacity;
 	}
 
