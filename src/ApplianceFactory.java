@@ -35,15 +35,14 @@ public class ApplianceFactory {
 	 *                     Storage Capacity
 	 * @return the item that was created
 	 */
-	public Appliance createAppliance(int type, String manufacturer, String model, String applianceID, double price,
-			double proprietary) {
+	public Appliance createAppliance(int type, String manufacturer, String model, double price, double proprietary) {
 		switch (type) {
 		case Company.WASHERDRYER:
-			return new WasherDryer(manufacturer, model, applianceID, price, proprietary);
+			return new WasherDryer(manufacturer, model, price, proprietary);
 		case Company.FURNACE:
-			return new Furnace(manufacturer, model, applianceID, price, proprietary);
+			return new Furnace(manufacturer, model, price, proprietary);
 		case Company.REFRIGERATOR:
-			return new Furnace(manufacturer, model, applianceID, price, proprietary);
+			return new Furnace(manufacturer, model, price, proprietary);
 		default:
 			return null;
 		}
