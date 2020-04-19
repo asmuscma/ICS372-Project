@@ -1,3 +1,4 @@
+
 /**
  * 
  * @author Brahma Dathan and Sarnath Ramnath
@@ -34,19 +35,20 @@ public class Customer implements Matchable<String>, Serializable {
 
 	/**
 	 * Single Customer
+	 * 
 	 * @param name
 	 * @param phone
 	 * @param id
 	 */
-	public Customer(String name, String phone, String id) {
+	public Customer(String name, String phone) {
 		this.name = name;
 		this.phone = phone;
-		this.customerID = id;
-		id = MEMBER_STRING + (CustomerIdServer.instance()).getId();
+		customerID = MEMBER_STRING + (CustomerIdServer.instance()).getId();
 	}
 
 	/**
 	 * Getter for name
+	 * 
 	 * @return name
 	 */
 	public String getName() {
@@ -55,6 +57,7 @@ public class Customer implements Matchable<String>, Serializable {
 
 	/**
 	 * Setter for name
+	 * 
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -63,7 +66,8 @@ public class Customer implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for phone
-	 * @return phone 
+	 * 
+	 * @return phone
 	 */
 	public String getPhone() {
 		return phone;
@@ -71,6 +75,7 @@ public class Customer implements Matchable<String>, Serializable {
 
 	/**
 	 * Setter for phone
+	 * 
 	 * @param phone
 	 */
 	public void setPhone(String phone) {
@@ -79,6 +84,7 @@ public class Customer implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for customerID
+	 * 
 	 * @return customerID
 	 */
 	public String getID() {
@@ -86,17 +92,9 @@ public class Customer implements Matchable<String>, Serializable {
 	}
 
 	/**
-	 * Setter for customerID
-	 * @param id
-	 */
-	public void setId(String id) {
-		this.customerID = id;
-	}
-
-	/**
 	 * Matchable interface
-	 * @param key
-	 * 		customer ID
+	 * 
+	 * @param key customer ID
 	 */
 	public boolean matches(String key) {
 		return this.getID().equals(key);
