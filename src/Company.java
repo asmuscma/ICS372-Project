@@ -55,14 +55,11 @@ public class Company implements Serializable {
 	/**
 	 * Private for the singleton pattern Creates the catalog and customer collection
 	 * objects
-
-private Company() {
-		inventory = Inventory.instance();
-		customerList = CustomerList.instance();
-	}
-
-	/**
-	 * Supports the singleton pattern
+	 * 
+	 * private Company() { inventory = Inventory.instance(); customerList =
+	 * CustomerList.instance(); }
+	 * 
+	 * /** Supports the singleton pattern
 	 * 
 	 * @return the singleton object
 	 */
@@ -83,9 +80,10 @@ private Company() {
 		return null;
 	}
 
-	public Appliance addAppliance(String manufacturer, String model, double price) {
-		// TODO ApplianceId shouldn't be here, it is generated automatically
-		Appliance item = instance().createLoanableItem(manufacturer, model, price);
+	public Appliance addAppliance(int type, String manufacturer, String model, String applianceID, double price,
+			double proprietary) {
+		Appliance item = ApplianceFactory.instance().createAppliance(type, manufacturer, model, applianceID, price,
+				proprietary);
 		if (inventory.insertAppliance(item)) {
 			return (item);
 		}
