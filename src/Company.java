@@ -92,21 +92,20 @@ private Company() {
 		return null;
 	}
 
-	public Appliance searchInventory(String applianceId) {
-		return inventory.search(applianceId);
+	public String searchModel(String modelId) {
+		return inventory.search(modelId).getModel();
 	}
 
-	private Appliance createLoanableItem(String manufacturer, String model, double price) {
-		// TODO Auto-generated method stub
-		return null;
+	public int searchInventory(String modelId) {
+		return inventory.searchInventory(modelId);
 	}
 
 	public Customer searchMembership(String customerId) {
 		return customerList.search(customerId);
 	}
 
-	public Appliance searchBackorder(String applianceId) {
-		return BackorderList.search(applianceId);
+	public Order searchBackorder(String applianceId) {
+		return orderList.search(applianceId);
 	}
 
 	/**
