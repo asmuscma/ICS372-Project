@@ -92,8 +92,13 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Appliance searchInventory(String applianceId) {
-		return inventory.search(applianceId);
+	// TODO Implement
+	public Model searchModel(String modelId) {
+		return null;
+	}
+
+	public int searchInventory(String modelId) {
+		return inventory.searchInventory(modelId);
 	}
 
 	private Appliance createLoanableItem(String manufacturer, String model, double price) {

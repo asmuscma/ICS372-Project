@@ -52,14 +52,11 @@ public class Inventory extends ItemList<Appliance, String> {
 	/**
 	 * Removes an appliance from the catalog
 	 * 
-	 * @param applianceId
-<<<<<<< HEAD
-	 *            book id
-	 * @return true if book could be removed
-=======
+	 * @param applianceId <<<<<<< HEAD book id
+	 * @return true if book could be removed =======
 	 * 
-	 * @return true if appliance could be removed
->>>>>>> 2ef4b4014b40be0e5b3a11da85a7698ac073b669
+	 * @return true if appliance could be removed >>>>>>>
+	 *         2ef4b4014b40be0e5b3a11da85a7698ac073b669
 	 */
 	public boolean removeAppliance(String applianceId) {
 		Appliance appliance = search(applianceId);
@@ -78,6 +75,21 @@ public class Inventory extends ItemList<Appliance, String> {
 	 */
 	public boolean insertAppliance(Appliance appliance) {
 		return super.add(appliance);
+	}
+
+	/**
+	 * Searches the inventory for the model specified and returns the count.
+	 * 
+	 * @param the model of the appliance to be searched
+	 * @return the quantity of the item in stock
+	 */
+	public int searchInventory(String modelId) {
+		int count = 0;
+		while (inventory.iterator().hasNext()) {
+			if (inventory.search(modelId).getID() == modelId)
+				count++;
+		}
+		return count;
 	}
 
 	/**

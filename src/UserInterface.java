@@ -240,7 +240,6 @@ public class UserInterface {
 	 * asking for the applianceId and quantity. It uses the Company method to add it
 	 * to the order list.
 	 * 
-	 * TODO: Check if enough are in stock
 	 */
 	public void addOrder() {
 		Appliance result;
@@ -250,18 +249,22 @@ public class UserInterface {
 			return;
 		}
 		do {
-			String applianceId = getToken("Please enter the appliance id");
-			if (company.searchBackorder(applianceId) == null) {
+			String modelId = getToken("Please enter the model id");
+			if (company.searchBackorder(modelId) == null) {
 				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-				result = company.addOrder(customerId, applianceId);
-				if (result != null) {
-					System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
-							+ "  " + quantity);
+				if (company.searchInventory(modelId) >= quantity) {
+					result = company.addOrder(customerId, modelId);
+					if (result != null) {
+						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
+								+ result.getPrice() + "  " + quantity);
+					} else {
+						System.out.println("Appliance could not be sold");
+					}
+					if (!yesOrNo("Add more orders?")) {
+						break;
+					}
 				} else {
-					System.out.println("Appliance could not be sold");
-				}
-				if (!yesOrNo("Add more orders?")) {
-					break;
+					System.out.println("Not enough in stock");
 				}
 			} else {
 				System.out.println("Appliance is on backorder");
@@ -285,18 +288,22 @@ public class UserInterface {
 			return;
 		}
 		do {
-			String applianceId = getToken("Please enter the appliance id");
-			if (company.searchInventory(applianceId) == null) {
+			String modelId = getToken("Please enter the model id");
+			if (company.searchModel(modelId) != null) {
 				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-				result = company.addBackorder(customerId, applianceId);
-				if (result != null) {
-					System.out.println(result.getManufacturer() + "  " + result.getModel() + "   " + result.getPrice()
-							+ "  " + quantity);
+				if (company.searchInventory(modelId) <= quantity) {
+					result = company.addBackorder(customerId, modelId);
+					if (result != null) {
+						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
+								+ result.getPrice() + "  " + quantity);
+					} else {
+						System.out.println("Appliance could not be backordered");
+					}
+					if (!yesOrNo("Add more backorders?")) {
+						break;
+					}
 				} else {
-					System.out.println("Appliance could not be backordered");
-				}
-				if (!yesOrNo("Add more backorders?")) {
-					break;
+					System.out.println("Enough is in stock to order");
 				}
 			} else {
 				System.out.println("Appliance is already in stock");
@@ -399,7 +406,7 @@ public class UserInterface {
 		try {
 			Company tempLibrary = Company.retrieve();
 			if (tempLibrary != null) {
-				System.out.println(" The library has been successfully retrieved from the file LibraryData \n");
+				System.out.println("The library has been successfully retrieved from the file LibraryData \n");
 				company = tempLibrary;
 			} else {
 				System.out.println("File doesnt exist; creating new library");
