@@ -35,6 +35,10 @@ import java.util.StringTokenizer;
  * 
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  * 
+ *         TODO addItem, addOrder, enroll in a repair plan, withdraw from a
+ *         repair plan, change repair plans, print revenue, list appliances,
+ *         list users in repair plans, list customers, list backorders
+ * 
  */
 public class UserInterface {
 	private static UserInterface userInterface;
@@ -518,7 +522,7 @@ public class UserInterface {
 		 */
 
 		/*
-		 * Business Process 10 -- List repair plans
+		 * Business Process 10 -- List users in repair plans
 		 */
 
 		/*
