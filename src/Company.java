@@ -100,11 +100,6 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Order addOrder(int type, String customerId, String applianceId, int quantity) {
-		double orderCost = applianceList.search(applianceId).getPrice() * quantity;
-		Order item = OrderFactory.instance().createOrder(type, customerId, applianceId, orderCost, quantity);
-	}
-
 	public String searchModel(String applianceId) {
 		return applianceList.search(applianceId).getModel();
 	}
@@ -125,8 +120,13 @@ public class Company implements Serializable {
 		return customerList.search(customerId);
 	}
 
-	public Order searchBackorder(String orderId) {
-		return orderList.search(orderId);
+	public Order addOrder(int type, String customerId, String applianceId, int quantity) {
+		double orderCost = applianceList.search(applianceId).getPrice() * quantity;
+		Order item = OrderFactory.instance().createOrder(type, customerId, applianceId, orderCost, quantity);
+		if (orderList.insertOrder(item)) {
+			return (item);
+		}
+		return null;
 	}
 
 	/**
