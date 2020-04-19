@@ -5,17 +5,19 @@ import java.util.GregorianCalendar;
 
 /**
  * Implements Orders
+ * 
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  *
  */
 public abstract class Order implements Matchable<String>, Serializable {
 	private static final long serialVersionUID = 1L;
-	private String orderID;
+	private String orderId;
 	private String customerID;
 	private String applianceID;
 	private double orderCost;
 	private int quantity;
 	private Calendar date;
+	private static final String ORDER_STRING = "R";
 
 	/**
 	 * Order Constructor
@@ -28,18 +30,18 @@ public abstract class Order implements Matchable<String>, Serializable {
 	 * @param date
 	 */
 	public Order(String orderID, String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
-		this.orderID = orderID;
 		this.customerID = customerID;
 		this.applianceID = applianceID;
 		this.orderCost = orderCost;
 		this.quantity = quantity;
+		orderId = ORDER_STRING + (OrderIdServer.instance().getId());
 		date = new GregorianCalendar();
 		date.setTimeInMillis(System.currentTimeMillis());
 	}
 
 	/**
 	 * @param date
-	 * @return 
+	 * @return
 	 */
 	public boolean onDate(Calendar date) {
 		return ((date.get(Calendar.YEAR) == this.date.get(Calendar.YEAR))
@@ -49,14 +51,16 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for orderID
+	 * 
 	 * @return orderID
 	 */
-	public String getID() {
-		return orderID;
+	public String getId() {
+		return orderId;
 	}
 
 	/**
 	 * Getter for customerID
+	 * 
 	 * @return customerID
 	 */
 	public String getCustomerID() {
@@ -65,6 +69,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for applianceID
+	 * 
 	 * @return applianceID
 	 */
 	public String getApplianceID() {
@@ -73,6 +78,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for orderCost
+	 * 
 	 * @return orderCost
 	 */
 	public double getOrderCost() {
@@ -81,6 +87,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for date
+	 * 
 	 * @return date
 	 */
 	public String getDate() {
@@ -89,13 +96,16 @@ public abstract class Order implements Matchable<String>, Serializable {
 
 	/**
 	 * Getter for quantity
+	 * 
 	 * @return quantity
 	 */
 	public int getQuantity() {
 		return quantity;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -103,12 +113,14 @@ public abstract class Order implements Matchable<String>, Serializable {
 		return "Order [customerID=" + customerID + ", applianceID=" + applianceID + ", orderCost=" + orderCost + "]";
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see Matchable#matches(java.lang.Object)
 	 */
 	@Override
 	public boolean matches(String key) {
-		return this.getID().equals(key);
+		return this.getId().equals(key);
 	}
 
 }
