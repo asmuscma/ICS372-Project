@@ -48,17 +48,15 @@ public class UserInterface {
 	private static final int ADD_CUSTOMER = 1;
 	private static final int ADD_APPLIANCE = 2;
 	private static final int ADD_ORDER = 3;
-	private static final int ADD_BACKORDER = 4;
-	private static final int ADD_REPAIRPLAN = 5;
-	private static final int ADD_ITEM = 6;
-	private static final int GET_ORDERS = 7;
-	private static final int PROCESS_BACKORDERS = 8;
-	private static final int PROCESS_REPAIRPLANS = 9;
-	private static final int GET_REVENUE = 10;
-	private static final int SAVE = 11;
-	private static final int RETRIEVE = 12;
-	private static final int PRINT_FORMATTED = 13;
-	private static final int HELP = 14;
+	private static final int ADD_ITEM = 4;
+	private static final int GET_ORDERS = 5;
+	private static final int PROCESS_BACKORDERS = 6;
+	private static final int PROCESS_REPAIRPLANS = 7;
+	private static final int GET_REVENUE = 8;
+	private static final int SAVE = 9;
+	private static final int RETRIEVE = 10;
+	private static final int PRINT_FORMATTED = 11;
+	private static final int HELP = 12;
 
 	/**
 	 * Private constructor to implement the singleton pattern. It looks for any
@@ -190,8 +188,6 @@ public class UserInterface {
 		System.out.println(ADD_CUSTOMER + " to add a customer");
 		System.out.println(ADD_APPLIANCE + " to add appliances");
 		System.out.println(ADD_ORDER + " to add a transaction/order");
-		System.out.println(ADD_BACKORDER + " to place a backorder");
-		System.out.println(ADD_REPAIRPLAN + " to add a repair plan");
 		System.out.println(ADD_ITEM + " to add items to the inventory");
 		System.out.println(GET_ORDERS + " to print the list of transactions");
 		System.out.println(PROCESS_BACKORDERS + " to process any backorders");
@@ -311,13 +307,6 @@ public class UserInterface {
 	}
 
 	/**
-	 * TODO Implement this
-	 */
-	public void addRepairPlan() {
-
-	}
-
-	/**
 	 * This method is to be used when the user needs to add an item to the
 	 * inventory. It will prompt the user for an applianceId and a quantity. Uses
 	 * the Company method to add items.
@@ -327,14 +316,7 @@ public class UserInterface {
 		int quantity = Integer.parseInt(getToken("Please enter the quantity"));
 		company.addToInventory(applianceId, quantity);
 		company.processBackOrders(applianceId);
-		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
-	}
-
-	/**
-	 * TODO Implement this
-	 */
-	public void getOrders() {
-
+		System.out.println("Added " + company.searchInventory(applianceId) + " of " + applianceId + " to inventory");
 	}
 
 	/**
@@ -345,7 +327,9 @@ public class UserInterface {
 		Customer result;
 		do {
 			String repairPlanId = getToken("Please enter the repairPlanId");
-			result = company.processRepairPlan(repairPlanId);
+			if (company.searchOrder(orderId).get)
+				;
+			result = (repairPlanId);
 			if (result != null) {
 				System.out.println(result);
 			} else {
@@ -362,7 +346,7 @@ public class UserInterface {
 	 * Company method to iterate through every order and add up the total money.
 	 */
 	public void getRevenue() {
-		System.out.println("Total revenue: $" + company.getRevenue());
+		System.out.println("Total revenue: $" + company.calculateRevenue());
 	}
 
 	/**
@@ -423,26 +407,26 @@ public class UserInterface {
 		/*
 		 * Business process 1 -- Add appliance
 		 */
-		company.addModel(1, "Good Company", "Best Washer", 1000, 250);
-		company.addModel(1, "Bad Company", "Worst Washer", 500, 400);
-		company.addModel(1, "Okay Company", "Decent Washer", 750, 450);
-		company.addModel(1, "Good Company", "Best Dryer", 1200, 300);
-		company.addModel(1, "Bad Company", "Worst Dryer", 500, 350);
-		company.addModel(1, "Okay Company", "Economy Dryer", 700, 400);
-		company.addModel(2, "Kilauea Heating", "Super-Heater", 2500, 1000000);
-		company.addModel(2, "Kilauea Heating", "Magma-Heater", 3000, 800000);
-		company.addModel(2, "Arizona Thermal", "Heater 1", 2600, 720000);
-		company.addModel(2, "Arizona Thermal", "Heater 2", 3200, 900000);
-		company.addModel(2, "Good Company", "Best Heater", 5000, 1500000);
-		company.addModel(2, "Bad Company", "Worst Portable Heater", 100, 5000);
-		company.addModel(2, "Okay Company", "Decent Portable Heater", 120, 8000);
-		company.addModel(3, "Emperor", "Penguin Mini-Fridge", 150, 2.6);
-		company.addModel(3, "Emperor", "Penguin Fridge", 250, 4.5);
-		company.addModel(3, "Emperor", "Penguin Mega-Fridge", 350, 8.6);
-		company.addModel(3, "Rockhopper", "Polar Mini-Fridge", 120, 2.5);
-		company.addModel(3, "Rockhopper", "Polar Fridge", 140, 8.3);
-		company.addModel(3, "Rockhopper", "Polar Mega-Fridge", 310, 8.1);
-		company.addModel(3, "Minnesota Dynamic", "Duluth", 1000, 20.3);
+		company.addModel(1, "Good Company", "Best Washer", 1000, "250");
+		company.addModel(1, "Bad Company", "Worst Washer", 500, "400");
+		company.addModel(1, "Okay Company", "Decent Washer", 750, "450");
+		company.addModel(1, "Good Company", "Best Dryer", 1200, "300");
+		company.addModel(1, "Bad Company", "Worst Dryer", 500, "350");
+		company.addModel(1, "Okay Company", "Economy Dryer", 700, "400");
+		company.addModel(2, "Kilauea Heating", "Super-Heater", 2500, "1000000");
+		company.addModel(2, "Kilauea Heating", "Magma-Heater", 3000, "800000");
+		company.addModel(2, "Arizona Thermal", "Heater 1", 2600, "720000");
+		company.addModel(2, "Arizona Thermal", "Heater 2", 3200, "900000");
+		company.addModel(2, "Good Company", "Best Heater", 5000, "1500000");
+		company.addModel(2, "Bad Company", "Worst Portable Heater", 100, "5000");
+		company.addModel(2, "Okay Company", "Decent Portable Heater", 120, "8000");
+		company.addModel(3, "Emperor", "Penguin Mini-Fridge", 150, "2.6");
+		company.addModel(3, "Emperor", "Penguin Fridge", 250, "4.5");
+		company.addModel(3, "Emperor", "Penguin Mega-Fridge", 350, "8.6");
+		company.addModel(3, "Rockhopper", "Polar Mini-Fridge", 120, "2.5");
+		company.addModel(3, "Rockhopper", "Polar Fridge", 140, "8.3");
+		company.addModel(3, "Rockhopper", "Polar Mega-Fridge", 310, "8.1");
+		company.addModel(3, "Minnesota Dynamic", "Duluth", 1000, "20.3");
 
 		/*
 		 * Business Process 3 -- Add to inventory and fulfill backorders
@@ -463,19 +447,19 @@ public class UserInterface {
 		 * Business Process 4 -- Purchase
 		 */
 
-		company.addOrder("M1", "A1", (int) (Math.random() * 10));
-		company.addOrder("M2", "A1", (int) (Math.random() * 10));
-		company.addOrder("M2", "A2", (int) (Math.random() * 10));
-		company.addOrder("M3", "A3", (int) (Math.random() * 10));
-		company.addOrder("M4", "A11", (int) (Math.random() * 10));
-		company.addOrder("M5", "A17", (int) (Math.random() * 10));
+		company.addOrder(1, "M1", "A1", (int) (Math.random() * 10));
+		company.addOrder(1, "M2", "A1", (int) (Math.random() * 10));
+		company.addOrder(1, "M2", "A2", (int) (Math.random() * 10));
+		company.addOrder(1, "M3", "A3", (int) (Math.random() * 10));
+		company.addOrder(1, "M4", "A11", (int) (Math.random() * 10));
+		company.addOrder(1, "M5", "A17", (int) (Math.random() * 10));
 
 		/*
 		 * Business Process 5 -- Enroll in repair plan
 		 */
-		company.addRepairPlan("M1", "A1");
-		company.addRepairPlan("M2", "A1");
-		company.addRepairPlan("M3", "A3");
+		company.addOrder(3, "M1", "A1", 1);
+		company.addOrder(3, "M2", "A1", 1);
+		company.addOrder(3, "M3", "A3", 1);
 
 		/*
 		 * Business Process 6 -- Withdraw from repair plan
@@ -488,7 +472,6 @@ public class UserInterface {
 		/*
 		 * Business Process 8 -- Print revenue
 		 */
-		printRevenue();
 
 		/*
 		 * Business Process 9 -- List appliances
@@ -533,12 +516,6 @@ public class UserInterface {
 				break;
 			case ADD_ORDER:
 				addOrder();
-				break;
-			case ADD_BACKORDER:
-				addBackorder();
-				break;
-			case ADD_REPAIRPLAN:
-				addRepairPlan();
 				break;
 			case ADD_ITEM:
 				addToInventory();

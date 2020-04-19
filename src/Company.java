@@ -133,6 +133,12 @@ public class Company implements Serializable {
 		return null;
 	}
 
+	/**
+	 * Used to process the back orders. Iterates throught orders to find back orders
+	 * then changes them to purchases.
+	 * 
+	 * @param applianceId
+	 */
 	public void processBackOrders(String applianceId) {
 		Iterator<Order> orderIterator = orderList.iterator();
 		while (orderIterator.hasNext()) {
@@ -147,6 +153,28 @@ public class Company implements Serializable {
 		}
 	}
 
+	/**
+	 * Calculates the revenue from all sales and repairs.
+	 * 
+	 * @return
+	 */
+	public double calculateRevenue() {
+		double revenue = 0;
+		for (Iterator<Order> orderIterator = orderList.iterator(); orderIterator.hasNext();) {
+			Order order = orderIterator.next();
+			if (!order.getClass().toString().equals("BackOrder")) {
+				revenue = +order.getOrderCost();
+			}
+		}
+		return revenue;
+	}
+
+	/**
+	 * Searches the order list for the order with the input order ID.
+	 * 
+	 * @param orderId
+	 * @return order
+	 */
 	public Order searchOrder(String orderId) {
 		return orderList.search(orderId);
 	}
@@ -223,19 +251,6 @@ public class Company implements Serializable {
 	@Override
 	public String toString() {
 		return inventory + "\n" + customerList;
-	}
-
-	public String getRevenue() {// Basic idea don't know if it is correct. I fail at using iterator
-		String test;
-		double id = 0;
-		for (Iterator<Order> iterator = orderList.iterator(); iterator.hasNext();) {
-			Order order = iterator.next();
-			id = +order.getOrderCost();
-
-			iterator.remove();
-
-		}
-		return test = Double.toString(id);
 	}
 
 }
