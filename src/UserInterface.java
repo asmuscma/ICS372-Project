@@ -446,12 +446,25 @@ public class UserInterface {
 		company.addAppliance(1, "Good Company", "Best Dryer", "004", 1200, 300);
 		company.addAppliance(1, "Bad Company", "Worst Dryer", "005", 500, 350);
 		company.addAppliance(1, "Okay Company", "Economy Dryer", "006", 700, 400);
-		company.addAppliance(2, "Kilaueau Heating", "Super-Heater", "007", 2500, 700);
+		company.addAppliance(2, "Kilauea Heating", "Super-Heater", "007", 2500, 1000000);
+		company.addAppliance(2, "Kilauea Heating", "Magma-Heater", "008", 3000, 800000);
+		company.addAppliance(2, "Arizona Thermal", "Heater 1", "009", 2600, 720000);
+		company.addAppliance(2, "Arizona Thermal", "Heater 2", "010", 3200, 900000);
+		company.addAppliance(2, "Good Company", "Best Heater", "011", 5000, 1500000);
+		company.addAppliance(2, "Bad Company", "Worst Portable Heater", "012", 100, 5000);
+		company.addAppliance(2, "Okay Company", "Decent Portable Heater", "013", 120, 8000);
+		company.addAppliance(3, "Emperor", "Penguin Mini-Fridge", "014", 150, 2.6);
+		company.addAppliance(3, "Emperor", "Penguin Fridge", "015", 250, 4.5);
+		company.addAppliance(3, "Emperor", "Penguin Mega-Fridge", "016", 350, 8.6);
+		company.addAppliance(3, "Rockhopper", "Polar Mini-Fridge", "017", 120, 2.5);
+		company.addAppliance(3, "Rockhopper", "Polar Fridge", "018", 140, 8.3);
+		company.addAppliance(3, "Rockhopper", "Polar Mega-Fridge", "019", 310, 8.1);
+		company.addAppliance(3, "Minnesota Dynamic", "Duluth", "020", 1000, 20.3);
 	}
 
 	/**
 	 * Orchestrates the whole process. Calls the appropriate method for the
-	 * different functionalties.
+	 * different functionalities.
 	 * 
 	 */
 	public void process() {
