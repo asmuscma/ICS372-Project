@@ -26,7 +26,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Iterator;
-import java.util.ListIterator;
 
 /**
  * This is an implementation of a Company that uses the facade pattern.
@@ -56,19 +55,25 @@ public class Company implements Serializable {
 	private static Company company;
 
 	/**
-	 * Private for the singleton pattern Creates the catalog and customer collection
-	 * objects
-	 * 
-	 * private Company() { inventory = Inventory.instance(); customerList =
-	 * CustomerList.instance(); }
-	 * 
-	 * /** Supports the singleton pattern
+	 * Private for the singleton pattern Creates the inventory and customer
+	 * collection objects
+	 */
+	private Company() {
+		inventory = Inventory.instance();
+		customerList = CustomerList.instance();
+		applianceList = ApplianceList.instance();
+	}
+
+	/**
+	 * Supports the singleton pattern
 	 * 
 	 * @return the singleton object
 	 */
 	public static Company instance() {
 		if (company == null) {
 			CustomerIdServer.instance(); // instantiate all singletons
+			OrderIdServer.instance();
+			ApplianceIdServer.instance();
 			return (company = new Company());
 		} else {
 			return company;
@@ -185,17 +190,16 @@ public class Company implements Serializable {
 		return inventory + "\n" + customerList;
 	}
 
-	public String getRevenue() {//Basic idea don't know if it is correct. I fail at using iterator
+	public String getRevenue() {// Basic idea don't know if it is correct. I fail at using iterator
 		String test;
 		double id = 0;
-		for (Iterator<Order> iterator =  orderList.iterator(); iterator
-				.hasNext();) {
+		for (Iterator<Order> iterator = orderList.iterator(); iterator.hasNext();) {
 			Order order = iterator.next();
-			id =+ order.getOrderCost();
-			
-				iterator.remove();
-				
-			}
+			id = +order.getOrderCost();
+
+			iterator.remove();
+
+		}
 		return test = Double.toString(id);
 	}
 
