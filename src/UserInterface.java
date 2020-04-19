@@ -231,8 +231,8 @@ public class UserInterface {
 		String manufacturer = getToken("Please enter the manufacturer id");
 		String model = getToken("Please enter the model");
 		double price = Double.parseDouble(getToken("Please enter the price"));
-		double proprietary = Double.parseDouble(
-				getToken("Please enter the proprietary info (Repair cost, heat capacity, storage capacity)"));
+		String proprietary = getToken(
+				"Please enter the proprietary info (Repair cost, heat capacity, storage capacity)");
 		Appliance result;
 		result = company.addModel(type, manufacturer, model, price, proprietary);
 		if (result == null) {
@@ -250,7 +250,9 @@ public class UserInterface {
 	 */
 	public void addOrder() {
 		Appliance appliance;
-		Order result;
+		Order purchase;
+		Order backOrder;
+		Order repairPlan;
 		String customerId = getToken("Please enter the customer id");
 		if (company.searchCustomer(customerId) == null) {
 			System.out.println("No such customer");
@@ -259,69 +261,52 @@ public class UserInterface {
 		do {
 			String applianceId = getToken("Please enter the appliance ID");
 			appliance = company.searchApplianceList(applianceId);
-			if(appliance== null) {
-				
+			if (appliance == null) {
 				int type = Integer.parseInt(getToken("Please enter 1 for a purchase or 3 for repair plan enrollment"));
-				if(type == 1) {
-				int quantity = Integer.parseInt(getToken("Please enter the quantity"));
-				if (company.searchInventory(applianceId) >= quantity) {
-					result = company.addOrder(type, customerId, applianceId, quantity);
-					if (result != null) {
+				switch (type) {
+				case Company.PURCHASE:
+					int quantity = Integer.parseInt(getToken("Please enter the quantity"));
+					if (company.searchInventory(applianceId) >= quantity) {
+						purchase = company.addOrder(type, customerId, applianceId, quantity);
+						if (purchase != null) {
+							System.out.println(appliance.getManufacturer() + "  " + appliance.getModel() + "   "
+									+ appliance.getPrice() + "each" + "  " + quantity + " purchased.");
+							company.removeFromInventory(applianceId, quantity);
+						} else {
+							System.out.println("Appliance could not be sold.");
+						}
+						if (!yesOrNo("Add more orders?")) {
+							break;
+						}
+					} else if (appliance.getClass().toString().equals("Furnace")) {
+						System.out.println("Not enough in stock");
+						break;
+					} else {
+						int inStock = company.searchInventory(applianceId);
+						quantity = -company.searchInventory(applianceId);
+						purchase = company.addOrder(type, customerId, applianceId, inStock);
 						System.out.println(appliance.getManufacturer() + "  " + appliance.getModel() + "   "
-								+ appliance.getPrice()+ "each" + "  " + quantity);
-					} else {
-						System.out.println("Appliance could not be sold");
+								+ appliance.getPrice() + "each" + "  " + quantity + " purchased.");
+						company.removeFromInventory(applianceId, quantity);
+						backOrder = company.addOrder(Company.BACKORDER, customerId, applianceId, quantity);
+						System.out.println(appliance.getManufacturer() + "  " + appliance.getModel() + "   "
+								+ appliance.getPrice() + "each" + "  " + quantity + " placed on back order.");
 					}
-					
-					if (!yesOrNo("Add more orders?")) {
+				case Company.REPAIRPLAN:
+					if (appliance.getClass().toString().equals("WasherDryer")) {
+						repairPlan = company.addOrder(2, customerId, applianceId, 1);
+						if (repairPlan != null) {
+							System.out.println("You are enrolled in a repair plan for " + applianceId + " for $"
+									+ appliance.getProprietary() + " a month.");
+						}
+					} else {
 						break;
 					}
-				} else {
-					System.out.println("Not enough in stock");
-					if(yesOrNo("Would you like to back order")
+				default:
+					break;
 				}
-			} else {
-				System.out.println("Appliance is on backorder");
 			}
-		} while (true);
-	}
 
-	/**
-	 * This method is to be called when you need to place a backorder on an
-	 * appliance. It will prompt the user for a customerId and check if it is valid
-	 * before asking for the applianceId and quantity. It uses the Company method to
-	 * add it to the order list.
-	 * 
-	 * 
-	 */
-	public void addBackorder() {
-		Appliance result;
-		String customerId = getToken("Please enter the customer id");
-		if (company.searchCustomer(customerId) == null) {
-			System.out.println("No such customer");
-			return;
-		}
-		do {
-			String applianceId = getToken("Please enter the model id");
-			if (company.searchModel(applianceId) != null) {
-				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-				if (company.searchInventory(applianceId) <= quantity) {
-					result = company.addBackorder(customerId, applianceId);
-					if (result != null) {
-						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
-								+ result.getPrice() + "  " + quantity);
-					} else {
-						System.out.println("Appliance could not be backordered");
-					}
-					if (!yesOrNo("Add more backorders?")) {
-						break;
-					}
-				} else {
-					System.out.println("Enough is in stock to order");
-				}
-			} else {
-				System.out.println("Appliance is already in stock");
-			}
 		} while (true);
 	}
 
@@ -340,9 +325,8 @@ public class UserInterface {
 	public void addToInventory() {
 		String applianceId = getToken("Please enter the appliance id");
 		int quantity = Integer.parseInt(getToken("Please enter the quantity"));
-		company.addToInventory(applianceId, quantity); // I know Im suppose to change this but Im a bit confuse on what
-														// ya
-														// wanted
+		company.addToInventory(applianceId, quantity);
+		processBackOrders(applianceId);
 		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
 	}
 
@@ -350,26 +334,15 @@ public class UserInterface {
 	 * TODO Implement this
 	 */
 	public void getOrders() {
+
 	}
 
 	/**
 	 * Method to be called for processing backorders. Prompts the user for the
 	 * appropriate values and uses the Company method to process any backorders.
 	 */
-	public void processBackorders() {
-		Customer result;
-		do {
-			String applianceId = getToken("Please enter the applianceId");
-			result = company.processBackorder(applianceId);
-			if (result != null) {
-				System.out.println(result);
-			} else {
-				System.out.println("No valid backorders left");
-			}
-			if (!yesOrNo("Process more backorders?")) {
-				break;
-			}
-		} while (true);
+	public void processBackorders(String applianceId) {
+		for(T order : )
 	}
 
 	/**

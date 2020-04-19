@@ -26,4 +26,9 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 		return Double.parseDouble(repairCost);
 	}
 
+	@Override
+	public void accept(ApplianceVisitor visitor) {
+		visitor.visit(this);
+	}
+
 }

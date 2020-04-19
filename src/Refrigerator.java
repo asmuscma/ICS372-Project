@@ -25,4 +25,9 @@ public class Refrigerator extends Appliance implements Serializable, Matchable<S
 	public String getStorageCapacity() {
 		return storageCapacity + "L";
 	}
+
+	@Override
+	public void accept(ApplianceVisitor visitor) {
+		visitor.visit(this);
+	}
 }

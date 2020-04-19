@@ -112,6 +112,10 @@ public class Company implements Serializable {
 		return inventory.addToInventory(applianceId, quantity);
 	}
 
+	public boolean removeFromInventory(String applianceId, int quantity) {
+		return inventory.removeAppliance(applianceId, quantity);
+	}
+
 	public int searchInventory(String applianceId) {
 		return inventory.searchInventory(applianceId);
 	}
@@ -127,6 +131,17 @@ public class Company implements Serializable {
 			return (item);
 		}
 		return null;
+	}
+
+	public void processBackOrders(String applianceId) {
+		Iterator<Order> orderIterator = orderList.iterator();
+		while(orderIterator.hasNext()) {
+			Order order = orderList.iterator().next();
+			if(order.getClass().toString() == "BackOrder" && order.getApplianceID().equals(applianceId)) {
+				if(order.getQuantity() <= inventory.searchInventory(applianceId)) {
+					addOrder(PURCHASE, order.getCustomerID(), applianceId, order.getQuantity() )
+			}
+		}
 	}
 
 	public Order searchOrder(String orderId) {
