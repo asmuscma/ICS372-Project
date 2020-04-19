@@ -221,7 +221,7 @@ public class UserInterface {
 	 * the user for the manufacturer, model, and price. Uses the company method to
 	 * add it to the appliance list.
 	 */
-	public void addApplianceToInventory() {
+	public void addAppliance() {
 		int type = Integer.parseInt(
 				getToken("Please enter the appliance type (1 = Washer/Dryer, 2 = Furnace, 3 = Refrigerator)"));
 		String manufacturer = getToken("Please enter the manufacturer id");
@@ -233,7 +233,7 @@ public class UserInterface {
 		Appliance result;
 		result = company.addAppliance(type, manufacturer, model, applianceId, price, proprietary);
 		if (result == null) {
-			System.out.println("Could not add appliance.");
+			System.out.println("Could not add member");
 		}
 		System.out.println(result);
 	}
@@ -434,12 +434,18 @@ public class UserInterface {
 	 * customers, 20+ appliances and test business processes 1 through 6
 	 */
 	public void generateTestBed() {
+		/*
+		 * Business Process 2 -- Add customer
+		 */
 		company.addCustomer("John Smith", "123-456-7890");
 		company.addCustomer("Jane Adams", "987-654-3210");
 		company.addCustomer("Fred Morris", "111-222-3333");
 		company.addCustomer("Katherine Payne", "444-555-6666");
 		company.addCustomer("Tim Rodgers", "246-810-1214");
 
+		/*
+		 * Business process 1 -- Add appliance
+		 */
 		company.addAppliance(1, "Good Company", "Best Washer", "001", 1000, 250);
 		company.addAppliance(1, "Bad Company", "Worst Washer", "002", 500, 400);
 		company.addAppliance(1, "Okay Company", "Decent Washer", "003", 750, 450);
@@ -460,6 +466,25 @@ public class UserInterface {
 		company.addAppliance(3, "Rockhopper", "Polar Fridge", "018", 140, 8.3);
 		company.addAppliance(3, "Rockhopper", "Polar Mega-Fridge", "019", 310, 8.1);
 		company.addAppliance(3, "Minnesota Dynamic", "Duluth", "020", 1000, 20.3);
+
+		/*
+		 * Business Process 3 -- Add to inventory
+		 */
+		company.addItem("001", (int) (Math.random() * 10));
+		company.addItem("002", (int) (Math.random() * 10));
+		company.addItem("003", (int) (Math.random() * 10));
+		company.addItem("004", (int) (Math.random() * 10));
+		company.addItem("005", (int) (Math.random() * 10));
+		company.addItem("006", (int) (Math.random() * 10));
+		company.addItem("007", (int) (Math.random() * 10));
+		company.addItem("008", (int) (Math.random() * 10));
+		company.addItem("009", (int) (Math.random() * 10));
+		company.addItem("010", (int) (Math.random() * 10));
+		company.addItem("011", (int) (Math.random() * 10));
+
+		/*
+		 * Business Process 4 -- Purchase
+		 */
 	}
 
 	/**
