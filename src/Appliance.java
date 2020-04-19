@@ -21,8 +21,8 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 	public Appliance(String manufacturer, String model, String applianceID, double price) {
 		this.manufacturer = manufacturer;
 		this.model = model;
-		this.applianceID = applianceID;
 		this.price = price;
+		this.applianceID = applianceID;
 	}
 
 	/**
