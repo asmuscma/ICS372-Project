@@ -468,7 +468,7 @@ public class UserInterface {
 		company.addAppliance(3, "Minnesota Dynamic", "Duluth", "020", 1000, 20.3);
 
 		/*
-		 * Business Process 3 -- Add to inventory
+		 * Business Process 3 -- Add to inventory and fulfill backorders
 		 */
 		company.addItem("001", (int) (Math.random() * 10));
 		company.addItem("002", (int) (Math.random() * 10));
@@ -485,6 +485,54 @@ public class UserInterface {
 		/*
 		 * Business Process 4 -- Purchase
 		 */
+
+		company.addOrder("M1", "A1", (int) (Math.random() * 10));
+		company.addOrder("M2", "A1", (int) (Math.random() * 10));
+		company.addOrder("M2", "A2", (int) (Math.random() * 10));
+		company.addOrder("M3", "A3", (int) (Math.random() * 10));
+		company.addOrder("M4", "A11", (int) (Math.random() * 10));
+		company.addOrder("M5", "A17", (int) (Math.random() * 10));
+
+		/*
+		 * Business Process 5 -- Enroll in repair plan
+		 */
+		company.addRepairPlan("M1", "A1");
+		company.addRepairPlan("M2", "A1");
+		company.addRepairPlan("M3", "A3");
+
+		/*
+		 * Business Process 6 -- Withdraw from repair plan
+		 */
+
+		/*
+		 * Business Process 7 -- Change repair plans
+		 */
+
+		/*
+		 * Business Process 8 -- Print revenue
+		 */
+		printRevenue();
+
+		/*
+		 * Business Process 9 -- List appliances
+		 */
+
+		/*
+		 * Business Process 10 -- List repair plans
+		 */
+
+		/*
+		 * Business Process 11 -- List customers
+		 */
+
+		/*
+		 * Business Process 12 -- List backorders
+		 */
+
+		/*
+		 * Business Process 13 -- Save data to disk
+		 */
+		save();
 	}
 
 	/**
