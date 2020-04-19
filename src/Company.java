@@ -135,11 +135,14 @@ public class Company implements Serializable {
 
 	public void processBackOrders(String applianceId) {
 		Iterator<Order> orderIterator = orderList.iterator();
-		while(orderIterator.hasNext()) {
+		while (orderIterator.hasNext()) {
 			Order order = orderList.iterator().next();
-			if(order.getClass().toString() == "BackOrder" && order.getApplianceID().equals(applianceId)) {
-				if(order.getQuantity() <= inventory.searchInventory(applianceId)) {
-					addOrder(PURCHASE, order.getCustomerID(), applianceId, order.getQuantity() )
+			if (order.getClass().toString() == "BackOrder" && order.getApplianceID().equals(applianceId)) {
+				if (order.getQuantity() <= inventory.searchInventory(applianceId)) {
+					addOrder(PURCHASE, order.getCustomerID(), applianceId, order.getQuantity());
+					removeFromInventory(applianceId, order.getQuantity());
+					orderList.remove(order);
+				}
 			}
 		}
 	}

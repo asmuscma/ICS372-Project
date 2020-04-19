@@ -326,7 +326,7 @@ public class UserInterface {
 		String applianceId = getToken("Please enter the appliance id");
 		int quantity = Integer.parseInt(getToken("Please enter the quantity"));
 		company.addToInventory(applianceId, quantity);
-		processBackOrders(applianceId);
+		company.processBackOrders(applianceId);
 		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
 	}
 
@@ -335,14 +335,6 @@ public class UserInterface {
 	 */
 	public void getOrders() {
 
-	}
-
-	/**
-	 * Method to be called for processing backorders. Prompts the user for the
-	 * appropriate values and uses the Company method to process any backorders.
-	 */
-	public void processBackorders(String applianceId) {
-		for(T order : )
 	}
 
 	/**
