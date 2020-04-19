@@ -331,10 +331,10 @@ public class UserInterface {
 	 * inventory. It will prompt the user for an applianceId and a quantity. Uses
 	 * the Company method to add items.
 	 */
-	public void addItem() {
+	public void addModel() {
 		String applianceId = getToken("Please enter the appliance id");
 		double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-		company.addItem(applianceId, quantity);
+		company.addModel(applianceId, quantity);
 		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
 	}
 
@@ -450,26 +450,26 @@ public class UserInterface {
 		/*
 		 * Business process 1 -- Add appliance
 		 */
-		company.addAppliance(1, "Good Company", "Best Washer", "001", 1000, 250);
-		company.addAppliance(1, "Bad Company", "Worst Washer", "002", 500, 400);
-		company.addAppliance(1, "Okay Company", "Decent Washer", "003", 750, 450);
-		company.addAppliance(1, "Good Company", "Best Dryer", "004", 1200, 300);
-		company.addAppliance(1, "Bad Company", "Worst Dryer", "005", 500, 350);
-		company.addAppliance(1, "Okay Company", "Economy Dryer", "006", 700, 400);
-		company.addAppliance(2, "Kilauea Heating", "Super-Heater", "007", 2500, 1000000);
-		company.addAppliance(2, "Kilauea Heating", "Magma-Heater", "008", 3000, 800000);
-		company.addAppliance(2, "Arizona Thermal", "Heater 1", "009", 2600, 720000);
-		company.addAppliance(2, "Arizona Thermal", "Heater 2", "010", 3200, 900000);
-		company.addAppliance(2, "Good Company", "Best Heater", "011", 5000, 1500000);
-		company.addAppliance(2, "Bad Company", "Worst Portable Heater", "012", 100, 5000);
-		company.addAppliance(2, "Okay Company", "Decent Portable Heater", "013", 120, 8000);
-		company.addAppliance(3, "Emperor", "Penguin Mini-Fridge", "014", 150, 2.6);
-		company.addAppliance(3, "Emperor", "Penguin Fridge", "015", 250, 4.5);
-		company.addAppliance(3, "Emperor", "Penguin Mega-Fridge", "016", 350, 8.6);
-		company.addAppliance(3, "Rockhopper", "Polar Mini-Fridge", "017", 120, 2.5);
-		company.addAppliance(3, "Rockhopper", "Polar Fridge", "018", 140, 8.3);
-		company.addAppliance(3, "Rockhopper", "Polar Mega-Fridge", "019", 310, 8.1);
-		company.addAppliance(3, "Minnesota Dynamic", "Duluth", "020", 1000, 20.3);
+		company.addModel(1, "Good Company", "Best Washer", "001", 1000, 250);
+		company.addModel(1, "Bad Company", "Worst Washer", "002", 500, 400);
+		company.addModel(1, "Okay Company", "Decent Washer", "003", 750, 450);
+		company.addModel(1, "Good Company", "Best Dryer", "004", 1200, 300);
+		company.addModel(1, "Bad Company", "Worst Dryer", "005", 500, 350);
+		company.addModel(1, "Okay Company", "Economy Dryer", "006", 700, 400);
+		company.addModel(2, "Kilauea Heating", "Super-Heater", "007", 2500, 1000000);
+		company.addModel(2, "Kilauea Heating", "Magma-Heater", "008", 3000, 800000);
+		company.addModel(2, "Arizona Thermal", "Heater 1", "009", 2600, 720000);
+		company.addModel(2, "Arizona Thermal", "Heater 2", "010", 3200, 900000);
+		company.addModel(2, "Good Company", "Best Heater", "011", 5000, 1500000);
+		company.addModel(2, "Bad Company", "Worst Portable Heater", "012", 100, 5000);
+		company.addModel(2, "Okay Company", "Decent Portable Heater", "013", 120, 8000);
+		company.addModel(3, "Emperor", "Penguin Mini-Fridge", "014", 150, 2.6);
+		company.addModel(3, "Emperor", "Penguin Fridge", "015", 250, 4.5);
+		company.addModel(3, "Emperor", "Penguin Mega-Fridge", "016", 350, 8.6);
+		company.addModel(3, "Rockhopper", "Polar Mini-Fridge", "017", 120, 2.5);
+		company.addModel(3, "Rockhopper", "Polar Fridge", "018", 140, 8.3);
+		company.addModel(3, "Rockhopper", "Polar Mega-Fridge", "019", 310, 8.1);
+		company.addModel(3, "Minnesota Dynamic", "Duluth", "020", 1000, 20.3);
 
 		/*
 		 * Business Process 3 -- Add to inventory and fulfill backorders
