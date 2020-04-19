@@ -129,6 +129,10 @@ public class Company implements Serializable {
 		return null;
 	}
 
+	public Order searchOrder(String orderId) {
+		return orderList.search(orderId);
+	}
+
 	/**
 	 * Retrieves a deserialized version of the library from disk
 	 * 
