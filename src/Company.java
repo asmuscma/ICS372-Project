@@ -25,7 +25,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Iterator;
 
 /**
@@ -101,9 +100,9 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Order addOrder(int type, String customerId, String applianceId, int quantity, Calendar date) {
-		applianceList.search(applianceId)
-		Order item = OrderFactory.instance().createOrder(type, customerId, applianceId, orderCost, quantity, date);
+	public Order addOrder(int type, String customerId, String applianceId, int quantity) {
+		double orderCost = applianceList.search(applianceId).getPrice() * quantity;
+		Order item = OrderFactory.instance().createOrder(type, customerId, applianceId, orderCost, quantity);
 	}
 
 	public String searchModel(String applianceId) {

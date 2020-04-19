@@ -1,4 +1,3 @@
-import java.util.Calendar;
 
 public class OrderFactory {
 	private static OrderFactory factory;
@@ -36,15 +35,14 @@ public class OrderFactory {
 	 *                    Storage Capacity
 	 * @return the item that was created
 	 */
-	public Order createOrder(int type, String customerID, String applianceID, double orderCost, int quantity,
-			Calendar date) {
+	public Order createOrder(int type, String customerID, String applianceID, double orderCost, int quantity) {
 		switch (type) {
 		case Company.PURCHASE:
-			return new Purchase(customerID, applianceID, orderCost, quantity, date);
+			return new Purchase(customerID, applianceID, orderCost, quantity);
 		case Company.BACKORDER:
-			return new BackOrder(customerID, applianceID, orderCost, quantity, date);
+			return new BackOrder(customerID, applianceID, orderCost, quantity);
 		case Company.REPAIRPLAN:
-			return new Repair(customerID, applianceID, orderCost, quantity, date);
+			return new Repair(customerID, applianceID, orderCost, quantity);
 		default:
 			return null;
 		}
