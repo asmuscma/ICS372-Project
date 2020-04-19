@@ -55,8 +55,8 @@ public class Company implements Serializable {
 	/**
 	 * Private for the singleton pattern Creates the catalog and customer collection
 	 * objects
-	 */
-	private Company() {
+
+private Company() {
 		inventory = Inventory.instance();
 		customerList = CustomerList.instance();
 	}
