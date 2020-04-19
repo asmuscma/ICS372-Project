@@ -92,9 +92,8 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	// TODO Implement
-	public Model searchModel(String modelId) {
-		return null;
+	public String searchModel(String modelId) {
+		return inventory.search(modelId).getModel();
 	}
 
 	public int searchInventory(String modelId) {
