@@ -81,7 +81,7 @@ public class Inventory extends ItemList<Appliance, String> {
 	public int searchInventory(String modelId) {
 		int count = 0;
 		while (inventory.iterator().hasNext()) {
-			if (inventory.search(modelId).getID() == modelId)
+			if (inventory.search(modelId).getModel() == modelId)
 				count++;
 		}
 		return count;
