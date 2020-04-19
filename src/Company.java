@@ -75,10 +75,10 @@ public class Company implements Serializable {
 		}
 	}
 
-	public Customer addCustomer(String name, String address, String phone) {
-		Customer member = new Customer(name, address, phone);
-		if (customerList.insertCustomer(member)) {
-			return (member);
+	public Customer addCustomer(String name, String phone) {
+		Customer customer = new Customer(name, phone);
+		if (customerList.insertCustomer(customer)) {
+			return (customer);
 		}
 		return null;
 	}
