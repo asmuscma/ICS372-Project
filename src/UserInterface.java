@@ -207,10 +207,9 @@ public class UserInterface {
 	 */
 	public void addCustomer() {
 		String name = getToken("Enter member name");
-		String address = getToken("Enter address");
 		String phone = getToken("Enter phone");
 		Customer result;
-		result = company.addCustomer(name, address, phone);
+		result = company.addCustomer(name, phone);
 		if (result == null) {
 			System.out.println("Could not add member");
 		}
