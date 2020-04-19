@@ -53,13 +53,13 @@ public class Inventory extends ItemList<Appliance, String> {
 	 * Removes an appliance from the catalog
 	 * 
 	 * @param applianceId
-<<<<<<< HEAD
+
 	 *            book id
 	 * @return true if book could be removed
-=======
+
 	 * 
 	 * @return true if appliance could be removed
->>>>>>> 2ef4b4014b40be0e5b3a11da85a7698ac073b669
+
 	 */
 	public boolean removeAppliance(String applianceId) {
 		Appliance appliance = search(applianceId);
