@@ -235,7 +235,7 @@ public class UserInterface {
 		double proprietary = Double.parseDouble(
 				getToken("Please enter the proprietary info (Repair cost, heat capacity, storage capacity)"));
 		Appliance result;
-		result = company.addAppliance(type, manufacturer, model, applianceId, price, proprietary);
+		result = company.addModel(type, manufacturer, model, price, proprietary);
 		if (result == null) {
 			System.out.println("Could not add member");
 		}
@@ -252,7 +252,7 @@ public class UserInterface {
 	public void addOrder() {
 		Appliance result;
 		String customerId = getToken("Please enter the customer id");
-		if (company.searchMembership(customerId) == null) {
+		if (company.searchCustomer(customerId) == null) {
 			System.out.println("No such customer");
 			return;
 		}
@@ -291,7 +291,7 @@ public class UserInterface {
 	public void addBackorder() {
 		Appliance result;
 		String customerId = getToken("Please enter the customer id");
-		if (company.searchMembership(customerId) == null) {
+		if (company.searchCustomer(customerId) == null) {
 			System.out.println("No such customer");
 			return;
 		}
@@ -334,7 +334,7 @@ public class UserInterface {
 	public void addModel() {
 		String applianceId = getToken("Please enter the appliance id");
 		double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-		company.addModel(applianceId, quantity);
+		company.addModel(applianceId, quantity); //I know Im suppose to change this but Im a bit confuse on what ya wanted
 		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
 	}
 

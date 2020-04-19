@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * This is an implementation of a Company that uses the facade pattern.
@@ -181,6 +183,20 @@ public class Company implements Serializable {
 	@Override
 	public String toString() {
 		return inventory + "\n" + customerList;
+	}
+
+	public String getRevenue() {//Basic idea don't know if it is correct. I fail at using iterator
+		String test;
+		double id = 0;
+		for (Iterator<Order> iterator =  orderList.iterator(); iterator
+				.hasNext();) {
+			Order order = iterator.next();
+			id =+ order.getOrderCost();
+			
+				iterator.remove();
+				
+			}
+		return test = Double.toString(id);
 	}
 
 }
