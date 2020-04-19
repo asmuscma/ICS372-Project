@@ -222,11 +222,16 @@ public class UserInterface {
 	 * add it to the appliance list.
 	 */
 	public void addAppliance() {
+		int type = Integer.parseInt(
+				getToken("Please enter the appliance type (1 = Washer/Dryer, 2 = Furnace, 3 = Refrigerator)"));
 		String manufacturer = getToken("Please enter the manufacturer id");
 		String model = getToken("Please enter the model");
+		String applianceId = getToken("Please enter the applianceId");
 		double price = Double.parseDouble(getToken("Please enter the price"));
+		double proprietary = Double.parseDouble(
+				getToken("Please enter the proprietary info (Repair cost, heat capacity, storage capacity)"));
 		Appliance result;
-		result = company.addAppliance(manufacturer, model, price);
+		result = company.addAppliance(type, manufacturer, model, applianceId, price, proprietary);
 		if (result == null) {
 			System.out.println("Could not add member");
 		}
@@ -425,11 +430,34 @@ public class UserInterface {
 	}
 
 	/**
+	 * This method is used as a facility for automated testing. This should add 5+
+	 * customers, 20+ appliances and test business processes 1 through 6
+	 */
+	public void generateTestBed() {
+		company.addCustomer("John Smith", "123-456-7890");
+		company.addCustomer("Jane Adams", "987-654-3210");
+		company.addCustomer("Fred Morris", "111-222-3333");
+		company.addCustomer("Katherine Payne", "444-555-6666");
+		company.addCustomer("Tim Rodgers", "246-810-1214");
+
+		company.addAppliance(1, "Good Company", "Best Washer", "001", 1000, 250);
+		company.addAppliance(1, "Bad Company", "Worst Washer", "002", 500, 400);
+		company.addAppliance(1, "Okay Company", "Decent Washer", "003", 750, 450);
+		company.addAppliance(1, "Good Company", "Best Dryer", "004", 1200, 300);
+		company.addAppliance(1, "Bad Company", "Worst Dryer", "005", 500, 350);
+		company.addAppliance(1, "Okay Company", "Economy Dryer", "006", 700, 400);
+		company.addAppliance(2, "Kilaueau Heating", "Super-Heater", "007", 2500, 700);
+	}
+
+	/**
 	 * Orchestrates the whole process. Calls the appropriate method for the
 	 * different functionalties.
 	 * 
 	 */
 	public void process() {
+		if (yesOrNo("Would you like to generate a test bed?")) {
+			generateTestBed();
+		}
 		int command;
 		help();
 		while ((command = getCommand()) != EXIT) {
