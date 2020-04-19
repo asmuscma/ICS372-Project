@@ -16,8 +16,7 @@ public class Refrigerator extends Appliance implements Serializable, Matchable<S
 	 * @param storageCapacity
 	 */
 	public Refrigerator(String manufacturer, String model, double price, double storageCapacity) {
-		super(manufacturer, model, price);
-		this.storageCapacity = storageCapacity;
+		super(manufacturer, model, price, storageCapacity);
 	}
 
 	/**

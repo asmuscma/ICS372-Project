@@ -249,7 +249,7 @@ public class UserInterface {
 	 * 
 	 */
 	public void addOrder() {
-		Appliance result;
+		Order result;
 		String customerId = getToken("Please enter the customer id");
 		if (company.searchCustomer(customerId) == null) {
 			System.out.println("No such customer");
@@ -257,10 +257,13 @@ public class UserInterface {
 		}
 		do {
 			String applianceId = getToken("Please enter the appliance ID");
+			if(company.searchModel(applianceId).equals(applianceId)) {
+				
+			
 			if (company.searchBackorder(applianceId) == null) {
-				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
+				int quantity = Integer.parseInt(getToken("Please enter the quantity"));
 				if (company.searchInventory(applianceId) >= quantity) {
-					result = company.addOrder(customerId, applianceId);
+					result = company.addOrder(customerId, applianceId, quantity);
 					if (result != null) {
 						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
 								+ result.getPrice() + "  " + quantity);

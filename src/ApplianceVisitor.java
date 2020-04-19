@@ -35,7 +35,7 @@ public interface ApplianceVisitor {
 	/**
 	 * This method processes WasherDryer objects
 	 * 
-	 * @param book the WasherDryer to be processed
+	 * @param washerDryer the WasherDryer to be processed
 	 */
 	public void visit(WasherDryer washerdryer);
 

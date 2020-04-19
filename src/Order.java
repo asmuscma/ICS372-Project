@@ -29,7 +29,7 @@ public abstract class Order implements Matchable<String>, Serializable {
 	 * @param quantity
 	 * @param date
 	 */
-	public Order(String orderID, String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
+	public Order(String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
 		this.customerID = customerID;
 		this.applianceID = applianceID;
 		this.orderCost = orderCost;

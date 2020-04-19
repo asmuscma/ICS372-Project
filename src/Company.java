@@ -48,6 +48,10 @@ public class Company implements Serializable {
 	public static final int WASHERDRYER = 1;
 	public static final int FURNACE = 2;
 	public static final int REFRIGERATOR = 3;
+
+	public static final int PURCHASE = 1;
+	public static final int BACKORDER = 2;
+	public static final int REPAIRPLAN = 3;
 	private Inventory inventory;
 	private CustomerList customerList;
 	private ApplianceList applianceList;
@@ -96,8 +100,20 @@ public class Company implements Serializable {
 		return null;
 	}
 
+	public Order addOrder(String customerId, String applianceId, int quantity) {
+		double price = applianceList.search(applianceId).getPrice();
+		String model = = applianceList.search(applianceId).getModel();
+		double proprietary = applianceList.search(applianceId)
+		
+		Order order = new Order()
+	}
+
 	public String searchModel(String applianceId) {
 		return applianceList.search(applianceId).getModel();
+	}
+
+	public Appliance searchApplianceList(String applianceId) {
+		return applianceList.search(applianceId);
 	}
 
 	public boolean addToInventory(String applianceId, int quantity) {
