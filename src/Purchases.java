@@ -13,7 +13,7 @@ public class Purchases extends Order implements Matchable<String>, Serializable 
 	@Override
 
 	public boolean matches(String key) {
-		return this.getID().equals(key);
+		return this.getId().equals(key);
 	}
 
 }

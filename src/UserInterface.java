@@ -230,14 +230,13 @@ public class UserInterface {
 				getToken("Please enter the appliance type (1 = Washer/Dryer, 2 = Furnace, 3 = Refrigerator)"));
 		String manufacturer = getToken("Please enter the manufacturer id");
 		String model = getToken("Please enter the model");
-		String applianceId = getToken("Please enter the applianceId");
 		double price = Double.parseDouble(getToken("Please enter the price"));
 		double proprietary = Double.parseDouble(
 				getToken("Please enter the proprietary info (Repair cost, heat capacity, storage capacity)"));
 		Appliance result;
 		result = company.addModel(type, manufacturer, model, price, proprietary);
 		if (result == null) {
-			System.out.println("Could not add member");
+			System.out.println("Could not add appliance.");
 		}
 		System.out.println(result);
 	}
@@ -257,7 +256,7 @@ public class UserInterface {
 			return;
 		}
 		do {
-			String applianceId = getToken("Please enter the model id");
+			String applianceId = getToken("Please enter the appliance ID");
 			if (company.searchBackorder(applianceId) == null) {
 				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
 				if (company.searchInventory(applianceId) >= quantity) {
@@ -331,10 +330,12 @@ public class UserInterface {
 	 * inventory. It will prompt the user for an applianceId and a quantity. Uses
 	 * the Company method to add items.
 	 */
-	public void addModel() {
+	public void addToInventory() {
 		String applianceId = getToken("Please enter the appliance id");
-		double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-		company.addModel(applianceId, quantity); //I know Im suppose to change this but Im a bit confuse on what ya wanted
+		int quantity = Integer.parseInt(getToken("Please enter the quantity"));
+		company.addToInventory(applianceId, quantity); // I know Im suppose to change this but Im a bit confuse on what
+														// ya
+														// wanted
 		System.out.println("Added " + quantity + " of " + applianceId + " to inventory");
 	}
 
@@ -450,41 +451,41 @@ public class UserInterface {
 		/*
 		 * Business process 1 -- Add appliance
 		 */
-		company.addModel(1, "Good Company", "Best Washer", "001", 1000, 250);
-		company.addModel(1, "Bad Company", "Worst Washer", "002", 500, 400);
-		company.addModel(1, "Okay Company", "Decent Washer", "003", 750, 450);
-		company.addModel(1, "Good Company", "Best Dryer", "004", 1200, 300);
-		company.addModel(1, "Bad Company", "Worst Dryer", "005", 500, 350);
-		company.addModel(1, "Okay Company", "Economy Dryer", "006", 700, 400);
-		company.addModel(2, "Kilauea Heating", "Super-Heater", "007", 2500, 1000000);
-		company.addModel(2, "Kilauea Heating", "Magma-Heater", "008", 3000, 800000);
-		company.addModel(2, "Arizona Thermal", "Heater 1", "009", 2600, 720000);
-		company.addModel(2, "Arizona Thermal", "Heater 2", "010", 3200, 900000);
-		company.addModel(2, "Good Company", "Best Heater", "011", 5000, 1500000);
-		company.addModel(2, "Bad Company", "Worst Portable Heater", "012", 100, 5000);
-		company.addModel(2, "Okay Company", "Decent Portable Heater", "013", 120, 8000);
-		company.addModel(3, "Emperor", "Penguin Mini-Fridge", "014", 150, 2.6);
-		company.addModel(3, "Emperor", "Penguin Fridge", "015", 250, 4.5);
-		company.addModel(3, "Emperor", "Penguin Mega-Fridge", "016", 350, 8.6);
-		company.addModel(3, "Rockhopper", "Polar Mini-Fridge", "017", 120, 2.5);
-		company.addModel(3, "Rockhopper", "Polar Fridge", "018", 140, 8.3);
-		company.addModel(3, "Rockhopper", "Polar Mega-Fridge", "019", 310, 8.1);
-		company.addModel(3, "Minnesota Dynamic", "Duluth", "020", 1000, 20.3);
+		company.addModel(1, "Good Company", "Best Washer", 1000, 250);
+		company.addModel(1, "Bad Company", "Worst Washer", 500, 400);
+		company.addModel(1, "Okay Company", "Decent Washer", 750, 450);
+		company.addModel(1, "Good Company", "Best Dryer", 1200, 300);
+		company.addModel(1, "Bad Company", "Worst Dryer", 500, 350);
+		company.addModel(1, "Okay Company", "Economy Dryer", 700, 400);
+		company.addModel(2, "Kilauea Heating", "Super-Heater", 2500, 1000000);
+		company.addModel(2, "Kilauea Heating", "Magma-Heater", 3000, 800000);
+		company.addModel(2, "Arizona Thermal", "Heater 1", 2600, 720000);
+		company.addModel(2, "Arizona Thermal", "Heater 2", 3200, 900000);
+		company.addModel(2, "Good Company", "Best Heater", 5000, 1500000);
+		company.addModel(2, "Bad Company", "Worst Portable Heater", 100, 5000);
+		company.addModel(2, "Okay Company", "Decent Portable Heater", 120, 8000);
+		company.addModel(3, "Emperor", "Penguin Mini-Fridge", 150, 2.6);
+		company.addModel(3, "Emperor", "Penguin Fridge", 250, 4.5);
+		company.addModel(3, "Emperor", "Penguin Mega-Fridge", 350, 8.6);
+		company.addModel(3, "Rockhopper", "Polar Mini-Fridge", 120, 2.5);
+		company.addModel(3, "Rockhopper", "Polar Fridge", 140, 8.3);
+		company.addModel(3, "Rockhopper", "Polar Mega-Fridge", 310, 8.1);
+		company.addModel(3, "Minnesota Dynamic", "Duluth", 1000, 20.3);
 
 		/*
 		 * Business Process 3 -- Add to inventory and fulfill backorders
 		 */
-		company.addItem("001", (int) (Math.random() * 10));
-		company.addItem("002", (int) (Math.random() * 10));
-		company.addItem("003", (int) (Math.random() * 10));
-		company.addItem("004", (int) (Math.random() * 10));
-		company.addItem("005", (int) (Math.random() * 10));
-		company.addItem("006", (int) (Math.random() * 10));
-		company.addItem("007", (int) (Math.random() * 10));
-		company.addItem("008", (int) (Math.random() * 10));
-		company.addItem("009", (int) (Math.random() * 10));
-		company.addItem("010", (int) (Math.random() * 10));
-		company.addItem("011", (int) (Math.random() * 10));
+		company.addToInventory("001", (int) (Math.random() * 10));
+		company.addToInventory("002", (int) (Math.random() * 10));
+		company.addToInventory("003", (int) (Math.random() * 10));
+		company.addToInventory("004", (int) (Math.random() * 10));
+		company.addToInventory("005", (int) (Math.random() * 10));
+		company.addToInventory("006", (int) (Math.random() * 10));
+		company.addToInventory("007", (int) (Math.random() * 10));
+		company.addToInventory("008", (int) (Math.random() * 10));
+		company.addToInventory("009", (int) (Math.random() * 10));
+		company.addToInventory("010", (int) (Math.random() * 10));
+		company.addToInventory("011", (int) (Math.random() * 10));
 
 		/*
 		 * Business Process 4 -- Purchase
@@ -568,7 +569,7 @@ public class UserInterface {
 				addRepairPlan();
 				break;
 			case ADD_ITEM:
-				addItem();
+				addToInventory();
 				break;
 			case GET_ORDERS:
 				getOrders();

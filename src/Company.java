@@ -100,8 +100,8 @@ public class Company implements Serializable {
 		return applianceList.search(applianceId).getModel();
 	}
 
-	public boolean addInventory(String applianceId, int quantity) {
-		return inventory.removeAppliance(applianceId, quantity);
+	public boolean addToInventory(String applianceId, int quantity) {
+		return inventory.addToInventory(applianceId, quantity);
 	}
 
 	public int searchInventory(String applianceId) {

@@ -72,7 +72,7 @@ public class Inventory implements Serializable {
 	 * @param appliance the appliance to be inserted
 	 * @return true if the appliance could be inserted. Currently always true
 	 */
-	public boolean insertAppliance(String applianceId, int addQuantity) {
+	public boolean addToInventory(String applianceId, int addQuantity) {
 		int quantityOnHand = hmap.get(applianceId);
 		hmap.replace(applianceId, quantityOnHand + addQuantity);
 		return true;
