@@ -100,8 +100,8 @@ public class Company implements Serializable {
 		return customerList.search(customerId);
 	}
 
-	public Appliance searchBackorder(String applianceId) {
-		return BackorderList.search(applianceId);
+	public Order searchBackorder(String applianceId) {
+		return orderList.search(applianceId);
 	}
 
 	/**
