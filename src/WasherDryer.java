@@ -6,7 +6,7 @@ import java.io.Serializable;
  */
 public class WasherDryer extends Appliance implements Serializable, Matchable<String> {
 	private static final long serialVersionUID = 1L;
-	private double repairCost;
+	private String repairCost;
 
 	/**
 	 * @param manufacturer
@@ -15,7 +15,7 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 	 * @param price
 	 * @param repairPlanCost
 	 */
-	public WasherDryer(String manufacturer, String model, double price, double repairCost) {
+	public WasherDryer(String manufacturer, String model, double price, String repairCost) {
 		super(manufacturer, model, price, repairCost);
 	}
 
@@ -23,7 +23,7 @@ public class WasherDryer extends Appliance implements Serializable, Matchable<St
 	 * @return repairPlanCost of the WasherDryer0
 	 */
 	public double getRepairCost() {
-		return repairCost;
+		return Double.parseDouble(repairCost);
 	}
 
 }

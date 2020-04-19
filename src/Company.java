@@ -92,7 +92,7 @@ public class Company implements Serializable {
 		return null;
 	}
 
-	public Appliance addModel(int type, String manufacturer, String model, double price, double proprietary) {
+	public Appliance addModel(int type, String manufacturer, String model, double price, String proprietary) {
 		Appliance item = ApplianceFactory.instance().createAppliance(type, manufacturer, model, price, proprietary);
 		if (applianceList.insertAppliance(item)) {
 			return (item);

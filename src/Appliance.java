@@ -11,7 +11,7 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 	private String model;
 	private String applianceID;
 	private double price;
-	private double proprietary;
+	private String proprietary;
 	private static final String APPLIANCE_STRING = "A";
 
 	/**
@@ -20,7 +20,7 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 	 * @param applianceID  appliance ID
 	 * @param price        appliance price
 	 */
-	public Appliance(String manufacturer, String model, double price, double proprietary) {
+	public Appliance(String manufacturer, String model, double price, String proprietary) {
 		this.manufacturer = manufacturer;
 		this.model = model;
 		this.price = price;
@@ -60,7 +60,7 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 		return this.getID().equals(key);
 	}
 
-	public double getProprietary() {
+	public String getProprietary() {
 		return proprietary;
 	}
 
@@ -70,7 +70,7 @@ public abstract class Appliance implements Matchable<String>, Serializable {
 	@Override
 	public String toString() {
 		return "Appliance [manufacturer=" + manufacturer + ", model=" + model + ", applianceID=" + applianceID
-				+ ", price=" + price + "]";
+				+ ", price=" + price + " ]";
 	}
 
 	public void accept(ApplianceVisitor visitor) {

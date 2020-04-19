@@ -249,6 +249,7 @@ public class UserInterface {
 	 * 
 	 */
 	public void addOrder() {
+		Appliance appliance;
 		Order result;
 		String customerId = getToken("Please enter the customer id");
 		if (company.searchCustomer(customerId) == null) {
@@ -257,24 +258,27 @@ public class UserInterface {
 		}
 		do {
 			String applianceId = getToken("Please enter the appliance ID");
-			if(company.searchModel(applianceId).equals(applianceId)) {
+			appliance = company.searchApplianceList(applianceId);
+			if(appliance== null) {
 				
-			
-			if (company.searchBackorder(applianceId) == null) {
+				int type = Integer.parseInt(getToken("Please enter 1 for a purchase or 3 for repair plan enrollment"));
+				if(type == 1) {
 				int quantity = Integer.parseInt(getToken("Please enter the quantity"));
 				if (company.searchInventory(applianceId) >= quantity) {
-					result = company.addOrder(customerId, applianceId, quantity);
+					result = company.addOrder(type, customerId, applianceId, quantity);
 					if (result != null) {
-						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
-								+ result.getPrice() + "  " + quantity);
+						System.out.println(appliance.getManufacturer() + "  " + appliance.getModel() + "   "
+								+ appliance.getPrice()+ "each" + "  " + quantity);
 					} else {
 						System.out.println("Appliance could not be sold");
 					}
+					
 					if (!yesOrNo("Add more orders?")) {
 						break;
 					}
 				} else {
 					System.out.println("Not enough in stock");
+					if(yesOrNo("Would you like to back order")
 				}
 			} else {
 				System.out.println("Appliance is on backorder");

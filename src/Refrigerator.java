@@ -6,7 +6,7 @@ import java.io.Serializable;
  */
 public class Refrigerator extends Appliance implements Serializable, Matchable<String> {
 	private static final long serialVersionUID = 1L;
-	private double storageCapacity;
+	private String storageCapacity;
 
 	/**
 	 * @param manufacturer
@@ -15,14 +15,14 @@ public class Refrigerator extends Appliance implements Serializable, Matchable<S
 	 * @param price
 	 * @param storageCapacity
 	 */
-	public Refrigerator(String manufacturer, String model, double price, double storageCapacity) {
+	public Refrigerator(String manufacturer, String model, double price, String storageCapacity) {
 		super(manufacturer, model, price, storageCapacity);
 	}
 
 	/**
 	 * @return storage capacity of the refrigerator
 	 */
-	public double getStorageCapacity() {
-		return storageCapacity;
+	public String getStorageCapacity() {
+		return storageCapacity + "L";
 	}
 }
