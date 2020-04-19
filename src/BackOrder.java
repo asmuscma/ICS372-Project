@@ -1,12 +1,11 @@
 import java.io.Serializable;
-import java.util.Calendar;
 
 public class BackOrder extends Order implements Matchable<String>, Serializable {
 	private static final long serialVersionUID = 1L;
 	boolean backOrderFulfilled = false;
 
-	public BackOrder(String customerID, String applianceID, double orderCost, int quantity, Calendar date) {
-		super(customerID, applianceID, orderCost, quantity, date);
+	public BackOrder(String customerID, String applianceID, double orderCost, int quantity) {
+		super(customerID, applianceID, orderCost, quantity);
 	}
 
 	public void setBackOrderStatus(boolean fulfilled) {
