@@ -75,18 +75,18 @@ public class Company implements Serializable {
 		}
 	}
 
-	public Customer addCustomer(String name, String address, String phone) {
-		Customer member = new Customer(name, address, phone);
-		if (customerList.insertCustomer(member)) {
-			return (member);
+	public Customer addCustomer(String name, String phone) {
+		Customer customer = new Customer(name, phone);
+		if (customerList.insertCustomer(customer)) {
+			return (customer);
 		}
 		return null;
 	}
 
-	public Appliance addAppliance(String manufacturer, String model, String applianceID, double price) {
+	public Appliance addAppliance(String manufacturer, String model, double price) {
 		// TODO ApplianceId shouldn't be here, it is generated automatically
-		Appliance item = instance().createLoanableItem(manufacturer, model, applianceID, price);
-		if (inventory.insertLoanableItem(item)) {
+		Appliance item = instance().createLoanableItem(manufacturer, model, price);
+		if (inventory.insertAppliance(item)) {
 			return (item);
 		}
 		return null;
@@ -101,17 +101,12 @@ public class Company implements Serializable {
 		return inventory.searchInventory(modelId);
 	}
 
-	private Appliance createLoanableItem(String manufacturer, String model, double price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Customer searchMembership(String customerId) {
 		return customerList.search(customerId);
 	}
 
 	public Appliance searchBackorder(String applianceId) {
-		return backorderList.search(applianceId);
+		return BackorderList.search(applianceId);
 	}
 
 	/**
