@@ -96,11 +96,6 @@ public class Company implements Serializable {
 		return inventory.search(applianceId);
 	}
 
-	private Appliance createLoanableItem(String manufacturer, String model, double price) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public Customer searchMembership(String customerId) {
 		return customerList.search(customerId);
 	}
