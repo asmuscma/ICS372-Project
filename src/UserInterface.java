@@ -257,7 +257,7 @@ public class UserInterface {
 			if (company.searchBackorder(modelId) == null) {
 				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
 				if (company.searchInventory(modelId) >= quantity) {
-					result = company.addOrders(customerId, modelId);
+					result = company.addOrder(customerId, modelId);
 					if (result != null) {
 						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
 								+ result.getPrice() + "  " + quantity);
