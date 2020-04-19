@@ -253,11 +253,11 @@ public class UserInterface {
 			return;
 		}
 		do {
-			String modelId = getToken("Please enter the model id");
-			if (company.searchBackorder(modelId) == null) {
+			String applianceId = getToken("Please enter the model id");
+			if (company.searchBackorder(applianceId) == null) {
 				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-				if (company.searchInventory(modelId) >= quantity) {
-					result = company.addOrder(customerId, modelId);
+				if (company.searchInventory(applianceId) >= quantity) {
+					result = company.addOrder(customerId, applianceId);
 					if (result != null) {
 						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
 								+ result.getPrice() + "  " + quantity);
@@ -292,11 +292,11 @@ public class UserInterface {
 			return;
 		}
 		do {
-			String modelId = getToken("Please enter the model id");
-			if (company.searchModel(modelId) != null) {
+			String applianceId = getToken("Please enter the model id");
+			if (company.searchModel(applianceId) != null) {
 				double quantity = Double.parseDouble(getToken("Please enter the quantity"));
-				if (company.searchInventory(modelId) <= quantity) {
-					result = company.addBackorder(customerId, modelId);
+				if (company.searchInventory(applianceId) <= quantity) {
+					result = company.addBackorder(customerId, applianceId);
 					if (result != null) {
 						System.out.println(result.getManufacturer() + "  " + result.getModel() + "   "
 								+ result.getPrice() + "  " + quantity);
