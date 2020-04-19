@@ -221,7 +221,7 @@ public class UserInterface {
 	 * the user for the manufacturer, model, and price. Uses the company method to
 	 * add it to the appliance list.
 	 */
-	public void addAppliance() {
+	public void addApplianceToInventory() {
 		int type = Integer.parseInt(
 				getToken("Please enter the appliance type (1 = Washer/Dryer, 2 = Furnace, 3 = Refrigerator)"));
 		String manufacturer = getToken("Please enter the manufacturer id");
@@ -233,7 +233,7 @@ public class UserInterface {
 		Appliance result;
 		result = company.addAppliance(type, manufacturer, model, applianceId, price, proprietary);
 		if (result == null) {
-			System.out.println("Could not add member");
+			System.out.println("Could not add appliance.");
 		}
 		System.out.println(result);
 	}
