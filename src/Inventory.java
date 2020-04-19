@@ -19,6 +19,8 @@
  * and are not responsible for any loss or damage resulting from its use.  
  */
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
 
 /**
  * The collection class for all Appliance objects
@@ -26,9 +28,10 @@ import java.io.IOException;
  * @author Colin Asmus, Phong Chang, Ronald Marita, Zion Tran
  *
  */
-public class Inventory extends ItemList<Appliance, String> {
+public class Inventory implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static Inventory inventory;
+	private HashMap<String, Integer> hmap = new HashMap<String, Integer>();
 
 	/**
 	 * Private constructor for singleton pattern
@@ -50,26 +53,29 @@ public class Inventory extends ItemList<Appliance, String> {
 	}
 
 	/**
-	 * Removes an appliance from the catalog
+	 * Removes an appliance from the inventory.
 	 * 
 	 */
-	public boolean removeAppliance(String applianceId) {
-		Appliance appliance = search(applianceId);
-		if (appliance == null) {
+	public boolean removeAppliance(String applianceId, int purchaseQuantity) {
+		int presentQuantity = hmap.get(applianceId);
+		if (purchaseQuantity > presentQuantity) {
 			return false;
 		} else {
-			return super.remove(appliance);
+			hmap.replace(applianceId, presentQuantity - purchaseQuantity);
+			return true;
 		}
 	}
 
 	/**
-	 * Inserts an appliance into the collection
+	 * Adds an appliance into the inventory
 	 * 
 	 * @param appliance the appliance to be inserted
 	 * @return true if the appliance could be inserted. Currently always true
 	 */
-	public boolean insertAppliance(Appliance appliance) {
-		return super.add(appliance);
+	public boolean insertAppliance(String applianceId, int addQuantity) {
+		int quantityOnHand = hmap.get(applianceId);
+		hmap.replace(applianceId, quantityOnHand + addQuantity);
+		return true;
 	}
 
 	/**
@@ -78,13 +84,8 @@ public class Inventory extends ItemList<Appliance, String> {
 	 * @param the model of the appliance to be searched
 	 * @return the quantity of the item in stock
 	 */
-	public int searchInventory(String modelId) {
-		int count = 0;
-		while (inventory.iterator().hasNext()) {
-			if (inventory.search(modelId).getModel() == modelId)
-				count++;
-		}
-		return count;
+	public int searchInventory(String applianceId) {
+		return hmap.get(applianceId);
 	}
 
 	/**
